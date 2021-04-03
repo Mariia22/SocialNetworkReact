@@ -1,9 +1,11 @@
+import style from './Post.module.css'
+
 const Post = () => {
     return (
-        <div className='app_post'>
+        <div className={style.appPost}>
             <form action='#' method='post'>
-                <input type='text' className='app_post_input' placeholder='New post'></input>
-                <button className='app_post_button'>Post</button>
+                <input type='text' className={style.appPostInput} placeholder='New post'></input>
+                <button className={style.appPostButton}>Post</button>
             </form>
         </div>
 

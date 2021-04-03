@@ -1,0 +1,24 @@
+.appPost form{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  
+  }
+
+.appPostInput{
+   width: 80%;
+   height: 40px;
+   border: none;
+   margin: 10px;
+   padding: 1px 10px 1px 30px;
+  }
+
+.appPostButton{
+    background:rgb(239, 76, 69);
+    cursor: pointer;
+    border:none;
+    border-radius: 5px;
+    color: white;
+    width: 120px;
+    height: 40px;
+  }
