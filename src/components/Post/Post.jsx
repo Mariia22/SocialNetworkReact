@@ -4,7 +4,7 @@ const Post = () => {
     return (
         <div className={style.appPost}>
             <form action='#' method='post'>
-                <input type='text' className={style.appPostInput} placeholder='New post'></input>
+                <textarea className={style.appPostInput} placeholder='New post'></textarea>
                 <button className={style.appPostButton}>Post</button>
             </form>
         </div>
