@@ -1,4 +1,4 @@
-import foto from './../images/foto.jpeg';
+import foto from './../../images/foto.jpeg';
 import style from './Profile.module.css'
 
 

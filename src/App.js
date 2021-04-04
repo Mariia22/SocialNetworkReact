@@ -1,6 +1,6 @@
-import Header from './components/Header';
-import Post from './components/Post';
-import Profile from './components/Profile';
+import Header from './components/Header/Header';
+import Post from './components/Post/Post';
+import Profile from './components/Profile/Profile';
 import './App.css';
 
 const App = () => {

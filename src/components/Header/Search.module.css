@@ -29,5 +29,5 @@ form{
   }
   
   .searchButton:before {
-    content: url(./../images/loupe.png);
+    content: url(./../../images/loupe.png);
   }
