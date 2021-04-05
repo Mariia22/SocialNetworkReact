@@ -1,4 +1,8 @@
-.appPost form{
+.appPost{
+  margin: 50px;
+}
+
+.appPostList form{
     display: flex;
     align-items: center;
     justify-content: space-around;
