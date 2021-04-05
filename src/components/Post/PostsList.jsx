@@ -8,9 +8,9 @@ const PostList = () => {
                 <textarea className={style.appPostInput} placeholder='New post'></textarea>
                 <button className={style.appPostButton}>Post</button>
             </form>
-            <Post message='Hi!!!' />
-            <Post message='How are you?' />
-            <Post message='I am OK' />
+            <Post message='Hi!!!' like='5' />
+            <Post message='How are you?' like='3' />
+            <Post message='I am OK' like='7' />
         </div>
 
     );

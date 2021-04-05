@@ -26,3 +26,9 @@
     width: 120px;
     height: 40px;
   }
+
+  .appPost span{
+    margin-left: 50px;
+    color: rgb(239, 76, 69);
+    font-size: 0.8rem;
+  }
