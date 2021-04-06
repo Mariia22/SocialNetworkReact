@@ -1,3 +1,5 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import style from './Search.module.css'
 
 const Search = () => {

@@ -1,6 +1,7 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import Header from './components/Header/Header';
 import PostList from './components/Post/PostsList';
-import Post from './components/Post/Post';
 import Profile from './components/Profile/Profile';
 import './App.css';
 

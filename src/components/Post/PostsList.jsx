@@ -1,3 +1,5 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import style from './Post.module.css'
 import Post from './Post'
 
