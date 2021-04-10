@@ -1,2 +1,14 @@
-
+.dialogs{
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+}
   
+li{
+    color: grey;
+    padding-bottom: 20px;
+}
+
+.dialog{
+    border-right: 3px solid grey;
+
+}
