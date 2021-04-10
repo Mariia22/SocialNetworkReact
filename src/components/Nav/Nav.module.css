@@ -8,9 +8,10 @@
     color:rgb(239, 76, 69);
     padding: 10px;
     cursor: pointer;
+    text-decoration: none;
   }
 
-  .active{
+  a.activeLink{
     color:white;
     text-decoration: underline;
   }
