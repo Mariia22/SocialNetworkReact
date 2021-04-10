@@ -1,16 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { NavLink } from 'react-router-dom';
 import style from './Dialog.module.css'
 
 const Dialog = () => {
     return (
         <div className={style.dialogs}>
             <ul className={style.dialog}>
-                <li>Mariia</li>
-                <li>Anna</li>
-                <li>Alina</li>
-                <li>Malina</li>
-                <li>Eva</li>
+                <li><NavLink to='dialog/1'>Mariia</NavLink></li>
+                <li><NavLink to='dialog/2'>Anna</NavLink></li>
+                <li><NavLink to='dialog/3'>Alina</NavLink></li>
+                <li><NavLink to='dialog/4'>Malina</NavLink></li>
+                <li><NavLink to='dialog/5'>Eva</NavLink></li>
             </ul>
             <ul className={style.message}>
                 <li>Hi</li>
