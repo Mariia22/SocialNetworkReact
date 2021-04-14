@@ -2,6 +2,19 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './Dialog.module.css'
 
+let dialogData = [
+    { id: 1, name: 'Mariia' },
+    { id: 2, name: 'Anna' },
+    { id: 3, name: 'Alina' },
+    { id: 4, name: 'Malina' },
+    { id: 5, name: 'Eva' },
+];
+
+let messageData = [
+    { message: 'Hi' },
+    { message: 'How are you!' },
+    { message: 'I am OK' }
+];
 const DialogItem = (props) => {
     let path = '/dialog/' + props.id;
     return (
@@ -18,16 +31,13 @@ const Dialog = () => {
     return (
         <div className={style.dialogs}>
             <ul className={style.dialog}>
-                <DialogItem name='Mariia' id='1' />
-                <DialogItem name='Anna' id='2' />
-                <DialogItem name='Alina' id='3' />
-                <DialogItem name='Malina' id='4' />
-                <DialogItem name='Eva' id='5' />
+                <DialogItem name={dialogData[0].name} id={dialogData[0].id} />
+                <DialogItem name={dialogData[1].name} id={dialogData[1].id} />
             </ul>
             <ul className={style.message}>
-                <MessageItem message='Hi' />
-                <MessageItem message='How are you!' />
-                <MessageItem message='I am OK' />
+                <MessageItem message={messageData[0].message} />
+                <MessageItem message={messageData[1].message} />
+                <MessageItem message={messageData[2].message} />
             </ul>
         </div>
     );
