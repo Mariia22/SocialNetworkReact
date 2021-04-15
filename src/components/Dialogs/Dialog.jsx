@@ -1,6 +1,17 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import style from './Dialog.module.css'
+import style from './Dialog.module.css';
+import MessageItem from './Message/Message';
+import DialogItem from './DialogItem/DialogItem';
+
+let messageData = [
+    { message: 'Hi' },
+    { message: 'How are you!' },
+    { message: 'I am OK' },
+    { message: 'I am not alcoholic' }
+];
+
+let messageItem = messageData.map(message => <MessageItem message={message.message} />);
+
 
 let dialogData = [
     { id: 1, name: 'Mariia' },
@@ -10,30 +21,7 @@ let dialogData = [
     { id: 5, name: 'Eva' },
 ];
 
-
-let messageData = [
-    { message: 'Hi' },
-    { message: 'How are you!' },
-    { message: 'I am OK' },
-    { message: 'I am not alcoholic'}
-];
-
-
-const DialogItem = (props) => {
-    let path = '/dialog/' + props.id;
-    return (
-        <li><NavLink to={path}>{props.name}</NavLink></li>
-    )
-}
 let dialogElement = dialogData.map(dialog => <DialogItem name={dialog.name} id={dialog.id} />);
-
-const MessageItem = (props) => {
-    return (
-        <li>{props.message}</li>
-    )
-}
-
-let messageItem = messageData.map(message => <MessageItem message={message.message} />);
 
 const Dialog = () => {
     return (
