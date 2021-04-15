@@ -10,34 +10,39 @@ let dialogData = [
     { id: 5, name: 'Eva' },
 ];
 
+
 let messageData = [
     { message: 'Hi' },
     { message: 'How are you!' },
-    { message: 'I am OK' }
+    { message: 'I am OK' },
+    { message: 'I am not alcoholic'}
 ];
+
+
 const DialogItem = (props) => {
     let path = '/dialog/' + props.id;
     return (
         <li><NavLink to={path}>{props.name}</NavLink></li>
     )
 }
+let dialogElement = dialogData.map(dialog => <DialogItem name={dialog.name} id={dialog.id} />);
 
 const MessageItem = (props) => {
     return (
         <li>{props.message}</li>
     )
 }
+
+let messageItem = messageData.map(message => <MessageItem message={message.message} />);
+
 const Dialog = () => {
     return (
         <div className={style.dialogs}>
             <ul className={style.dialog}>
-                <DialogItem name={dialogData[0].name} id={dialogData[0].id} />
-                <DialogItem name={dialogData[1].name} id={dialogData[1].id} />
+                {dialogElement}
             </ul>
             <ul className={style.message}>
-                <MessageItem message={messageData[0].message} />
-                <MessageItem message={messageData[1].message} />
-                <MessageItem message={messageData[2].message} />
+                {messageItem}
             </ul>
         </div>
     );
