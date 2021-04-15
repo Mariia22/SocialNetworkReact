@@ -3,6 +3,7 @@
     display: flex;
     justify-content: space-around;
     background:rgb(99%, 80%, 73%);
+    padding-top: 10px;
     margin-bottom: 50px;
   }
 
