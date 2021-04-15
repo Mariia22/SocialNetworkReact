@@ -4,7 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import Header from './components/Header/Header';
 import PostList from './components/Post/PostsList';
 import Profile from './components/Profile/Profile';
-import Dialog from './components/Dialogs/Dialog';
+import DialogList from './components/Dialogs/DialogList';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
@@ -18,7 +18,7 @@ const App = () => {
         <Profile />
         <div className="app_wrapper_content">
           <Route path='/profile' component={PostList} />
-          <Route path='/dialog' component={Dialog} />
+          <Route path='/dialog' component={DialogList} />
           <Route path='/news' component={News} />
           <Route path='/music' component={Music} />
           <Route path='/settings' component={Settings} />

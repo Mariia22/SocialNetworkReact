@@ -23,7 +23,7 @@ let dialogData = [
 
 let dialogElement = dialogData.map(dialog => <DialogItem name={dialog.name} id={dialog.id} />);
 
-const Dialog = () => {
+const DialogList = () => {
     return (
         <div className={style.dialogs}>
             <ul className={style.dialog}>
@@ -35,4 +35,4 @@ const Dialog = () => {
         </div>
     );
 }
-export default Dialog;
+export default DialogList;
