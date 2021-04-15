@@ -3,15 +3,8 @@ import ReactDOM from 'react-dom';
 import style from './Post.module.css'
 import Post from './Post'
 
-const postData = [
-    { message: 'Hi!!!', like: 5 },
-    { message: 'How are you?', like: 3 },
-    { message: 'I am OK', like: 7 },
-];
-
-const postMessage = postData.map(post => <Post message={post.message} like={post.like} />)
-
-const PostList = () => {
+const PostList = (props) => {
+    const postMessage = props.posts.map(post => <Post message={post.message} like={post.like} />)
     return (
         <div className={style.appPostList}>
             <form action='#' method='post'>
