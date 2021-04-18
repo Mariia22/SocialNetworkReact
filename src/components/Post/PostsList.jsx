@@ -4,7 +4,7 @@ import style from './Post.module.css'
 import Post from './Post'
 
 const PostList = (props) => {
-    const postMessage = props.posts.map(post => <Post message={post.message} like={post.like} />)
+    const postMessage = props.state.postData.map(post => <Post message={post.message} like={post.like} />)
     return (
         <div className={style.appPostList}>
             <form action='#' method='post'>
