@@ -17,7 +17,7 @@ const Profile = (props) => {
                 <p>Frontend developer</p>
                 <div className={style.appProfileStatistic}>Following<span>34</span></div>
                 <div className={style.appProfileStatistic}>Followers<span>34</span></div>
-                <a>View Profile</a>
+                <div className={style.appProfileView} ><a>View Profile</a></div>
                 <h4>Friends</h4>
                 <div className={style.appProfileFriendsList}>
                     {friendList}
