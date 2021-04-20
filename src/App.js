@@ -12,12 +12,13 @@ import './App.css';
 
 
 
+
 const App = (props) => {
   return (
     <BrowserRouter>
       <div className="app_wrapper">
         <Header />
-        <Profile />
+        <Profile state={props.state.friends} />
         <div className="app_wrapper_content">
           <Route path='/profile' render={() => <PostList state={props.state.posts} />} />
           <Route path='/dialog' render={() => <DialogList state={props.state.dialogs} />} />
