@@ -1,3 +1,4 @@
+import { rerenderDOM } from './../../render';
 let state = {
     posts: {
         postData: [
@@ -37,6 +38,7 @@ export const addPost = (textPost) => {
         likes: 0
     }
     state.posts.postData.push(newPost);
+    rerenderDOM();
 }
 
 export default state;

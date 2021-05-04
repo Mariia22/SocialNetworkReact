@@ -1,19 +1,15 @@
 .appPost{
   margin: 50px;
 }
-
-.appPostList form{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-  
-  }
-
+.appPostForm{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 .appPostInput{
    width: 80%;
    height: 40px;
    border: none;
-   margin: 10px;
    padding:10px;
   }
 

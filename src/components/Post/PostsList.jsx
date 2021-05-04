@@ -12,13 +12,12 @@ const PostList = (props) => {
     }
     return (
         <div className={style.appPostList}>
-            <form action='#' method='post'>
+            <div className={style.appPostForm}>
                 <textarea className={style.appPostInput} placeholder='New post' ref={newPost}></textarea>
                 <button className={style.appPostButton} onClick={addPost}>Post</button>
-            </form>
+            </div>
             {postMessage}
         </div>
-
     );
 }
 export default PostList;
