@@ -8,7 +8,7 @@ const PostList = (props) => {
     const newPost = React.createRef();
     const addPost = () => {
         let post = newPost.current.value;
-        alert(post);
+        props.addPost(post);
     }
     return (
         <div className={style.appPostList}>

@@ -1,9 +1,9 @@
 let state = {
     posts: {
         postData: [
-            { message: 'Hi!!!', like: 5 },
-            { message: 'How are you?', like: 3 },
-            { message: 'I am OK', like: 7 },
+            { id: 1, message: 'Hi!!!', like: 5 },
+            { id: 2, message: 'How are you?', like: 3 },
+            { id: 3, message: 'I am OK', like: 7 },
         ]
     },
 
@@ -29,6 +29,14 @@ let state = {
         { name: 'Alina', photo: './../../images/Alina.jpeg' }
     ]
 
+}
+export const addPost = (textPost) => {
+    const newPost = {
+        id: 4,
+        message: textPost,
+        likes: 0
+    }
+    state.posts.postData.push(newPost);
 }
 
 export default state;

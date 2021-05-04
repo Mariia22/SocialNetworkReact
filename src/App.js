@@ -20,7 +20,7 @@ const App = (props) => {
         <Header />
         <Profile state={props.state.friends} />
         <div className="app_wrapper_content">
-          <Route path='/profile' render={() => <PostList state={props.state.posts} />} />
+          <Route path='/profile' render={() => <PostList state={props.state.posts} addPost={props.addPost} />} />
           <Route path='/dialog' render={() => <DialogList state={props.state.dialogs} />} />
           <Route path='/news' component={News} />
           <Route path='/music' component={Music} />
