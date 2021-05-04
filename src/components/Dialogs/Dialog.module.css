@@ -11,3 +11,19 @@ li{
 .dialog{
     border-right: 3px solid grey;
 }
+.dialogInput{
+    height: 40px;
+    border: none;
+    padding: 10px;
+    margin-bottom: 10px;
+   }
+ 
+ .dialogButton{
+     background:rgb(239, 76, 69);
+     cursor: pointer;
+     border:none;
+     border-radius: 5px;
+     color: white;
+     width: 120px;
+     height: 40px;
+   }
