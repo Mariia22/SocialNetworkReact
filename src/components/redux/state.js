@@ -5,7 +5,8 @@ let state = {
             { id: 1, message: 'Hi!!!', like: 5 },
             { id: 2, message: 'How are you?', like: 3 },
             { id: 3, message: 'I am OK', like: 7 },
-        ]
+        ],
+        newPostText: ''
     },
 
     dialogs: {
@@ -31,14 +32,19 @@ let state = {
     ]
 
 }
-export const addPost = (textPost) => {
+export const addPost = () => {
     const newPost = {
         id: 4,
-        message: textPost,
-        likes: 0
+        message: state.posts.newPostText,
+        like: 0
     }
     state.posts.postData.push(newPost);
-    rerenderDOM();
+    changePost('');
+    rerenderDOM(state);
+}
+export const changePost = (textPost) => {
+    state.posts.newPostText = textPost;
+    rerenderDOM(state);
 }
 
 export default state;

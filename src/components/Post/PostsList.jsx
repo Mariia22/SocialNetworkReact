@@ -4,16 +4,19 @@ import style from './Post.module.css'
 import Post from './Post'
 
 const PostList = (props) => {
-    const postMessage = props.state.postData.map(post => <Post message={post.message} like={post.like} />)
+    const postMessage = props.posts.postData.map(post => <Post message={post.message} like={post.like} />)
     const newPost = React.createRef();
     const addPost = () => {
-        let post = newPost.current.value;
-        props.addPost(post);
+        props.addPost();
+    }
+    const changePost = () => {
+        let text = newPost.current.value;
+        props.changePost(text);
     }
     return (
         <div className={style.appPostList}>
             <div className={style.appPostForm}>
-                <textarea className={style.appPostInput} placeholder='New post' ref={newPost}></textarea>
+                <textarea className={style.appPostInput} ref={newPost} value={props.posts.newPostText} onChange={changePost}></textarea>
                 <button className={style.appPostButton} onClick={addPost}>Post</button>
             </div>
             {postMessage}
