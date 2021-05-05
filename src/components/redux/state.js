@@ -23,7 +23,8 @@ let state = {
             { message: 'How are you!' },
             { message: 'I am OK' },
             { message: 'I am not alcoholic' }
-        ]
+        ],
+        newMessage: ''
     },
     friends: [
         { name: 'Mariia', photo: './../../images/Mariia.jpeg' },
@@ -44,6 +45,19 @@ export const addPost = () => {
 }
 export const changePost = (textPost) => {
     state.posts.newPostText = textPost;
+    rerenderDOM(state);
+}
+
+export const addMessage = () => {
+    let newMessage = {
+        message: state.dialogs.newMessage
+    }
+    state.dialogs.messageData.push(newMessage);
+    changeMessage('');
+    rerenderDOM(state);
+}
+export const changeMessage = (message) => {
+    state.dialogs.newMessage = message;
     rerenderDOM(state);
 }
 

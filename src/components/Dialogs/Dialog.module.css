@@ -11,11 +11,16 @@ li{
 .dialog{
     border-right: 3px solid grey;
 }
+.containerMessage{
+    display:flex;
+    flex-direction: column;
+}
 .dialogInput{
+    width: 80%;
     height: 40px;
     border: none;
     padding: 10px;
-    margin-bottom: 10px;
+    margin: 10px;
    }
  
  .dialogButton{
@@ -24,6 +29,8 @@ li{
      border:none;
      border-radius: 5px;
      color: white;
-     width: 120px;
+     width: 25%;
      height: 40px;
-   }
+    margin: 10px;
+    
+}
