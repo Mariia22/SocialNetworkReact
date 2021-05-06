@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { addPostActionCreator, changePostActionCreator } from './../redux/state.js'
 import style from './Post.module.css'
 import Post from './Post'
 
@@ -7,11 +8,11 @@ const PostList = (props) => {
     const postMessage = props.posts.postData.map(post => <Post message={post.message} like={post.like} />)
     const newPost = React.createRef();
     const addPost = () => {
-        props.addPost();
+        props.dispatch(addPostActionCreator());
     }
     const changePost = () => {
         let text = newPost.current.value;
-        props.changePost(text);
+        props.dispatch(changePostActionCreator(text));
     }
     return (
         <div className={style.appPostList}>
@@ -24,3 +25,4 @@ const PostList = (props) => {
     );
 }
 export default PostList;
+
