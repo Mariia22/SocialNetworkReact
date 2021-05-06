@@ -7,14 +7,13 @@ import DialogItem from './DialogItem/DialogItem';
 const DialogList = (props) => {
     const messageItem = props.dialogs.messageData.map(message => <MessageItem message={message.message} />);
     const dialogItem = props.dialogs.dialogData.map(dialog => <DialogItem name={dialog.name} id={dialog.id} />);
-    const newMessage = React.createRef();
 
     const addMessage = () => {
         props.dispatch(addMessageActionCreator());
 
     }
-    const updateMessage = () => {
-        let message = newMessage.current.value;
+    const updateMessage = (e) => {
+        let message = e.target.value;
         props.dispatch(changeMessageActionCreator(message));
     }
     return (
@@ -26,7 +25,7 @@ const DialogList = (props) => {
                 <ul className={style.message}>
                     {messageItem}
                 </ul>
-                <textarea className={style.dialogInput} ref={newMessage} value={props.dialogs.newMessage} onChange={updateMessage}></textarea>
+                <textarea className={style.dialogInput} value={props.dialogs.newMessage} onChange={updateMessage}></textarea>
                 <button className={style.dialogButton} onClick={addMessage}>Send</button>
             </div>
         </div>
