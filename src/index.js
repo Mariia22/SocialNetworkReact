@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import store from './components/redux/state';
+import store from './components/redux/store.js';
 
 
-let rerenderDOM = (state) => {
+let rerenderDOM = () => {
     ReactDOM.render(
         <React.StrictMode>
             <App state={store.getState()} dispatch={store.dispatch.bind(store)} />

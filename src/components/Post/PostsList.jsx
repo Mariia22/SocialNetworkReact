@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { addPostActionCreator, changePostActionCreator } from './../redux/state.js'
+import { addPostActionCreator, changePostActionCreator } from '../redux/posts_reduce.js'
 import style from './Post.module.css'
 import Post from './Post'
 
