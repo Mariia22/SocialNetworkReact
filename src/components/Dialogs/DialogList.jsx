@@ -9,12 +9,12 @@ const DialogList = (props) => {
     const dialogItem = props.state.dialogs.dialogData.map(dialog => <DialogItem name={dialog.name} id={dialog.id} />);
 
     const addMessage = () => {
-        props.state.dispatch(addMessageActionCreator());
+        props.dispatch(addMessageActionCreator());
 
     }
     const updateMessage = (e) => {
         let message = e.target.value;
-        props.state.dispatch(changeMessageActionCreator(message));
+        props.dispatch(changeMessageActionCreator(message));
     }
     return (
         <div className={style.dialogs}>

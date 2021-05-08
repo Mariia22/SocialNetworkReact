@@ -20,8 +20,8 @@ const App = (props) => {
         <Header />
         <Profile state={props.state} />
         <div className="app_wrapper_content">
-          <Route path='/profile' render={() => <PostList state={props.state} />} />
-          <Route path='/dialog' render={() => <DialogList state={props.state} />} />
+          <Route path='/profile' render={() => <PostList state={props.state} dispatch={props.dispatch} />} />
+          <Route path='/dialog' render={() => <DialogList state={props.state} dispatch={props.dispatch} />} />
           <Route path='/news' component={News} />
           <Route path='/music' component={Music} />
           <Route path='/settings' component={Settings} />

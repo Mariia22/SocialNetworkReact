@@ -5,7 +5,6 @@ import style from './Post.module.css'
 import Post from './Post'
 
 const PostList = (props) => {
-    debugger;
     const postMessage = props.state.posts.postData.map(post => <Post message={post.message} like={post.like} />)
     const addPost = () => {
         props.dispatch(addPostActionCreator());
