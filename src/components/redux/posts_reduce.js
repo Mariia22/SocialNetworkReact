@@ -1,7 +1,15 @@
 const ADD_POST = 'ADD-POST';
 const CHANGE_POST = 'CHANGE-POST';
 
-export const postReduce = (state, action) => {
+let initialState = {
+    postData: [
+        { id: 1, message: 'Hi!!!', like: 5 },
+        { id: 2, message: 'How are you?', like: 3 },
+        { id: 3, message: 'I am OK', like: 7 },
+    ],
+    newPostText: ''
+}
+export const postReduce = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
             const newPost = {

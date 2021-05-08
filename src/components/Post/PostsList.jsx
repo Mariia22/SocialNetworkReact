@@ -5,7 +5,8 @@ import style from './Post.module.css'
 import Post from './Post'
 
 const PostList = (props) => {
-    const postMessage = props.posts.postData.map(post => <Post message={post.message} like={post.like} />)
+    debugger;
+    const postMessage = props.state.posts.postData.map(post => <Post message={post.message} like={post.like} />)
     const addPost = () => {
         props.dispatch(addPostActionCreator());
     }
@@ -16,7 +17,7 @@ const PostList = (props) => {
     return (
         <div className={style.appPostList}>
             <div className={style.appPostForm}>
-                <textarea className={style.appPostInput} value={props.posts.newPostText} onChange={changePost}></textarea>
+                <textarea className={style.appPostInput} value={props.state.posts.newPostText} onChange={changePost}></textarea>
                 <button className={style.appPostButton} onClick={addPost}>Post</button>
             </div>
             {postMessage}

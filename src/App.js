@@ -18,10 +18,10 @@ const App = (props) => {
     <BrowserRouter>
       <div className="app_wrapper">
         <Header />
-        <Profile state={props.state.friends} />
+        <Profile state={props.state} />
         <div className="app_wrapper_content">
-          <Route path='/profile' render={() => <PostList posts={props.state.posts} dispatch={props.dispatch} />} />
-          <Route path='/dialog' render={() => <DialogList dialogs={props.state.dialogs} dispatch={props.dispatch} />} />
+          <Route path='/profile' render={() => <PostList state={props.state} />} />
+          <Route path='/dialog' render={() => <DialogList state={props.state} />} />
           <Route path='/news' component={News} />
           <Route path='/music' component={Music} />
           <Route path='/settings' component={Settings} />

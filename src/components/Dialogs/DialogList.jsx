@@ -5,16 +5,16 @@ import MessageItem from './Message/Message';
 import DialogItem from './DialogItem/DialogItem';
 
 const DialogList = (props) => {
-    const messageItem = props.dialogs.messageData.map(message => <MessageItem message={message.message} />);
-    const dialogItem = props.dialogs.dialogData.map(dialog => <DialogItem name={dialog.name} id={dialog.id} />);
+    const messageItem = props.state.dialogs.messageData.map(message => <MessageItem message={message.message} />);
+    const dialogItem = props.state.dialogs.dialogData.map(dialog => <DialogItem name={dialog.name} id={dialog.id} />);
 
     const addMessage = () => {
-        props.dispatch(addMessageActionCreator());
+        props.state.dispatch(addMessageActionCreator());
 
     }
     const updateMessage = (e) => {
         let message = e.target.value;
-        props.dispatch(changeMessageActionCreator(message));
+        props.state.dispatch(changeMessageActionCreator(message));
     }
     return (
         <div className={style.dialogs}>
@@ -25,7 +25,7 @@ const DialogList = (props) => {
                 <ul className={style.message}>
                     {messageItem}
                 </ul>
-                <textarea className={style.dialogInput} value={props.dialogs.newMessage} onChange={updateMessage}></textarea>
+                <textarea className={style.dialogInput} value={props.state.dialogs.newMessage} onChange={updateMessage}></textarea>
                 <button className={style.dialogButton} onClick={addMessage}>Send</button>
             </div>
         </div>

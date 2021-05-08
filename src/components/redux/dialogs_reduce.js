@@ -1,7 +1,24 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
 const CHANGE_MESSAGE = 'CHANGE-MESSAGE';
 
-export const dialogReduce = (state, action) => {
+let initialState = {
+    dialogData: [
+        { id: 1, name: 'Mariia' },
+        { id: 2, name: 'Anna' },
+        { id: 3, name: 'Alina' },
+        { id: 4, name: 'Malina' },
+        { id: 5, name: 'Eva' },
+    ],
+
+    messageData: [
+        { message: 'Hi' },
+        { message: 'How are you!' },
+        { message: 'I am OK' },
+        { message: 'I am not alcoholic' }
+    ],
+    newMessage: ''
+};
+export const dialogReduce = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE:
             let newMessage = {
