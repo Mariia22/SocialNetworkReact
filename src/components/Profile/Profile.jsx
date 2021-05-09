@@ -7,8 +7,8 @@ import Friend from './Friend/Friend';
 
 
 const Profile = (props) => {
-    debugger;
-    const friendList = props.state.friends.friends.map(friend => <Friend name={friend.name} photo={friend.photo} />);
+    let state = props.store.getState();
+    const friendList = state.friends.friend.map(friend => <Friend name={friend.name} photo={friend.photo} />);
     return (
         <div className={style.appProfile}>
             <div className={style.appProfileRed}></div>

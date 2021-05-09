@@ -9,7 +9,7 @@ let initialState = {
     ],
     newPostText: ''
 }
-export const postReduce = (state = initialState, action) => {
+const postReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
             const newPost = {
@@ -30,3 +30,5 @@ export const postReduce = (state = initialState, action) => {
 
 export const addPostActionCreator = () => ({ type: ADD_POST })
 export const changePostActionCreator = (text) => ({ type: CHANGE_POST, text: text })
+
+export default postReducer;

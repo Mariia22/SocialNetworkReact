@@ -1,13 +1,12 @@
 import { combineReducers, createStore } from 'redux';
-import { dialogReduce } from './dialogs_reduce';
-import { postReduce } from './posts_reduce';
-import { friendReduce } from './friends_reduce';
+import dialogReducer from './dialogs_reduce';
+import postReducer from './posts_reduce';
+import friendReducer from './friends_reduce';
 
 let reducers = combineReducers({
-    posts: postReduce,
-    dialogs: dialogReduce,
-    friends: friendReduce
+    posts: postReducer,
+    dialogs: dialogReducer,
+    friends: friendReducer
 });
-let store = createStore(reducers);
-
+const store = createStore(reducers);
 export default store;
