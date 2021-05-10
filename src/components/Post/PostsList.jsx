@@ -16,7 +16,7 @@ const PostList = (props) => {
     return (
         <div className={style.appPostList}>
             <div className={style.appPostForm}>
-                <textarea className={style.appPostInput} value={props.posts.newPostText} onChange={changePost}></textarea>
+                <textarea className={style.appPostInput} value={props.newPostText} onChange={changePost}></textarea>
                 <button className={style.appPostButton} onClick={addPost}>Post</button>
             </div>
             {postMessage}

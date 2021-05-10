@@ -8,8 +8,7 @@ const PostListContainer = (props) => {
         props.store.dispatch(addPostActionCreator());
     }
     const changePost = (text) => {
-        let action = changePostActionCreator(text);
-        props.store.dispatch(action);
+        props.store.dispatch(changePostActionCreator(text));
     }
     return (
         <PostsList addNewPost={addPost} changeNewPost={changePost} newPostText={state.posts.newPostText}

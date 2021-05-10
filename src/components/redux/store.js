@@ -1,4 +1,4 @@
-import { dialogReduce } from './dialogs_reduce.js';
+/*import { dialogReduce } from './dialogs_reduce.js';
 import { postReduce } from './posts_reduce.js';
 import { friendReduce } from './friends_reduce.js';
 
@@ -53,3 +53,4 @@ let store = {
     }
 }
 export default store;
+*/
