@@ -1,8 +1,9 @@
-import React from 'react';
+//import React from 'react';
+import { connect } from 'react-redux';
 import { addPostActionCreator, changePostActionCreator } from '../redux/posts_reduce.js';
 import PostsList from './PostsList';
 
-const PostListContainer = (props) => {
+/*const PostListContainer = (props) => {
     let state = props.store.getState();
     const addPost = () => {
         props.store.dispatch(addPostActionCreator());
@@ -14,6 +15,24 @@ const PostListContainer = (props) => {
         <PostsList addNewPost={addPost} changeNewPost={changePost} newPostText={state.posts.newPostText}
             posts={state.posts.postData} />
     );
+}*/
+const mapStateToProps = (state) => {
+    return {
+        posts: state.posts.postData,
+        newPostText: state.posts.newPostText
+    }
 }
+
+const dispatchStateToProps = (dispatch) => {
+    return {
+        addPost: () => {
+            dispatch(addPostActionCreator());
+        },
+        changePost: () => {
+            dispatch(changePostActionCreator(text));
+        }
+    }
+};
+const PostListContainer = connect(mapStateToProps, dispatchStateToProps)(PostsList);
 export default PostListContainer;
 

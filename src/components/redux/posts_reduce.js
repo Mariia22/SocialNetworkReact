@@ -17,14 +17,18 @@ const postReducer = (state = initialState, action) => {
                 message: state.newPostText,
                 like: 0
             }
-            state.postData.push(newPost);
-            state.newPostText = '';
-            return state;
+            return {
+                ...state,
+                posts: [...state.postData, newPost],
+                newPost: ''
+            };
         case CHANGE_POST:
-            state.newPostText = action.text;
+            return {
+                ...state,
+                newPostText = action.text
+            }
+        default:
             return state;
-
-        default: return state;
     }
 }
 
