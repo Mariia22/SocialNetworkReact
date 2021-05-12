@@ -28,7 +28,7 @@ const dispatchStateToProps = (dispatch) => {
         addPost: () => {
             dispatch(addPostActionCreator());
         },
-        changePost: () => {
+        changePost: (text) => {
             dispatch(changePostActionCreator(text));
         }
     }

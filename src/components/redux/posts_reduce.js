@@ -20,12 +20,12 @@ const postReducer = (state = initialState, action) => {
             return {
                 ...state,
                 posts: [...state.postData, newPost],
-                newPost: ''
+                newPostText: ''
             };
         case CHANGE_POST:
             return {
                 ...state,
-                newPostText = action.text
+                newPostText: action.text
             }
         default:
             return state;

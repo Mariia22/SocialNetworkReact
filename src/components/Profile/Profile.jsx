@@ -7,8 +7,8 @@ import Friend from './Friend/Friend';
 
 
 const Profile = (props) => {
-    let state = props.store.getState();
-    const friendList = state.friends.friend.map(friend => <Friend name={friend.name} photo={friend.photo} />);
+    //let state = props.store.getState();
+    //const friendList = state.friends.friend.map(friend => <Friend name={friend.name} photo={friend.photo} />);
     return (
         <div className={style.appProfile}>
             <div className={style.appProfileRed}></div>
@@ -21,7 +21,7 @@ const Profile = (props) => {
                 <div className={style.appProfileView} ><a>View Profile</a></div>
                 <h4>Friends</h4>
                 <div className={style.appProfileFriendsList}>
-                    {friendList}
+
                 </div>
             </div>
         </div>

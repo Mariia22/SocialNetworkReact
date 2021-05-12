@@ -1,4 +1,4 @@
-import React from 'react';
+import { connect } from 'react-redux';
 import { addMessageActionCreator, changeMessageActionCreator } from '../redux/dialogs_reduce.js'
 import DialogList from './DialogList.jsx';
 
@@ -22,10 +22,10 @@ const mapStateToProps = (state) => {
         newMessage: state.dialogs.newMessage
     }
 }
-const dispatchStateToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         addMessage: () => { dispatch(addMessageActionCreator()) },
-        updateMessage: () => { dispatch(changeMessageActionCreator(message))}
+        updateMessage: (message) => { dispatch(changeMessageActionCreator(message)) }
     }
 }
 const DialogListContainer = connect(mapStateToProps, mapDispatchToProps)(DialogList);
