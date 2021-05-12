@@ -24,14 +24,16 @@ const dialogReducer = (state = initialState, action) => {
             let newMessage = {
                 message: state.newMessage
             }
-            state.messageData.push(newMessage);
-            state.newMessage = '';
-            return state;
-
+            return {
+                ...state,
+                dialogs: [...state.dialogData, newMessage],
+                newMessage = ''
+            }
         case CHANGE_MESSAGE:
-            state.newMessage = action.message;
-            return state;
-
+            return {
+                ...state,
+                newMessage = action.message
+            }
         default:
             return state;
     }
