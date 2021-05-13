@@ -19,13 +19,14 @@ import DialogList from './DialogList.jsx';
 const mapStateToProps = (state) => {
     return {
         dialogs: state.dialogs.messageData,
+        messages: state.dialogs.dialogData,
         newMessage: state.dialogs.newMessage
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
         addMessage: () => { dispatch(addMessageActionCreator()) },
-        updateMessage: (message) => { dispatch(changeMessageActionCreator(message)) }
+        changeMessage: (message) => { dispatch(changeMessageActionCreator(message)) }
     }
 }
 const DialogListContainer = connect(mapStateToProps, mapDispatchToProps)(DialogList);

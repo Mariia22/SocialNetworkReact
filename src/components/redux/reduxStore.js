@@ -9,4 +9,5 @@ let reducers = combineReducers({
     friends: friendReducer
 });
 const store = createStore(reducers);
+window.store = store;
 export default store;

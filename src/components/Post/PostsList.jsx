@@ -7,11 +7,11 @@ import Post from './Post';
 const PostList = (props) => {
     const postMessage = props.posts.map(post => <Post message={post.message} like={post.like} />)
     const addPost = () => {
-        props.addNewPost();
+        props.addPost();
     }
     const changePost = (e) => {
         let text = e.target.value;
-        props.changeNewPost(text);
+        props.changePost(text);
     }
     return (
         <div className={style.appPostList}>

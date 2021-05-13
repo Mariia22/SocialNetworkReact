@@ -26,7 +26,7 @@ const dialogReducer = (state = initialState, action) => {
             }
             return {
                 ...state,
-                dialogs: [...state.dialogData, newMessage],
+                dialogs: [...state.messageData, newMessage],
                 newMessage: ''
             }
         case CHANGE_MESSAGE:
