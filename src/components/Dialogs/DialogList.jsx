@@ -9,7 +9,6 @@ const DialogList = (props) => {
 
     const addMessage = () => {
         props.addMessage();
-
     }
     const updateMessage = (e) => {
         let message = e.target.value;

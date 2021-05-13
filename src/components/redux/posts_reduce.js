@@ -25,10 +25,8 @@ const postReducer = (state = initialState, action) => {
             }
         }
         default: { return state; }
-
     }
 }
-
 export const addPostActionCreator = () => ({ type: ADD_POST })
 export const changePostActionCreator = (text) => ({ type: CHANGE_POST, text: text })
 
