@@ -6,7 +6,7 @@ import friendReducer from './friends_reduce';
 let reducers = combineReducers({
     posts: postReducer,
     dialogs: dialogReducer,
-    friends: friendReducer
+    users: friendReducer
 });
 const store = createStore(reducers);
 window.store = store;

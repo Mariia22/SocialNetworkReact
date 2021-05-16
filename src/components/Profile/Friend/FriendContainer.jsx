@@ -4,13 +4,13 @@ import FriendList from './FriendList';
 
 const mapStateToProps = (state) => {
     return {
-        friends: state.friends.friendData
+        users: state.users.users
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        toggleFollowing: () => { dispatch(toggleFollowActionCreator()) },
-        setFriends: () => { dispatch(setFriendsActionCreator()) }
+        toggleFollowing: (userId) => { dispatch(toggleFollowActionCreator(userId)) },
+        setFriends: (users) => { dispatch(setFriendsActionCreator(users)) }
     }
 }
 const FriendContainer = connect(mapStateToProps, mapDispatchToProps)(FriendList);
