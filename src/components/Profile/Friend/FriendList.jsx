@@ -11,14 +11,14 @@ const FriendList = (props) => {
             ]
         )
     }
+
     return (
         <div className={style.appProfileFriendList}>
             {props.users.map(user =>
                 < div className={style.appProfileFriend} key={user.id}>
                     <img src={user.photo} alt="friend" />
                     <span>{user.name}</span>
-                    {user.follow ? <button onClick={() => props.toggleFollowing(user.id)}>Follow</button> :
-                        <button onClick={() => props.toggleFollowing(user.id)}>Unfollow</button>}
+                    <button onClick={() => props.toggleFollowing(user.id)}>{user.follow ? 'Follow' : 'Unfollow'}</button>
                 </ div>
             )}
         </div>)
