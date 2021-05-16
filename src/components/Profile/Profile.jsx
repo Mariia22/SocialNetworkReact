@@ -1,14 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import foto from './../../images/foto.jpeg';
 import style from './Profile.module.css'
-import Friend from './Friend/Friend';
-
-
+import FriendContainer from './Friend/FriendContainer';
 
 const Profile = (props) => {
-    //let state = props.store.getState();
-    //const friendList = state.friends.friend.map(friend => <Friend name={friend.name} photo={friend.photo} />);
     return (
         <div className={style.appProfile}>
             <div className={style.appProfileRed}></div>
@@ -18,10 +13,10 @@ const Profile = (props) => {
                 <p>Frontend developer</p>
                 <div className={style.appProfileStatistic}>Following<span>34</span></div>
                 <div className={style.appProfileStatistic}>Followers<span>34</span></div>
-                <div className={style.appProfileView} ><a>View Profile</a></div>
-                <h4>Friends</h4>
+                <div className={style.appProfileView} ><a href='./home'>View Profile</a></div>
+                <h4>Users</h4>
                 <div className={style.appProfileFriendsList}>
-
+                    <FriendContainer store={props.store} />
                 </div>
             </div>
         </div>

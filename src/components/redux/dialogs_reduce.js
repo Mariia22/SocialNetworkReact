@@ -11,10 +11,10 @@ let initialState = {
     ],
 
     messageData: [
-        { message: 'Hi' },
-        { message: 'How are you!' },
-        { message: 'I am OK' },
-        { message: 'I am not alcoholic' }
+        { id: 1, message: 'Hi' },
+        { id: 2, message: 'How are you!' },
+        { id: 3, message: 'I am OK' },
+        { id: 4, message: 'I am not alcoholic' }
     ],
     newMessage: ''
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Logo from './Logo';
 import Nav from '../Nav/Nav';
 import Search from './Search';

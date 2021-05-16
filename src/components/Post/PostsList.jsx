@@ -1,11 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import style from './Post.module.css'
 import Post from './Post';
 
 
 const PostList = (props) => {
-    const postMessage = props.posts.map(post => <Post message={post.message} like={post.like} />)
+    const postMessage = props.posts.map(post => <Post message={post.message} like={post.like} key={post.id} />)
     const addPost = () => {
         props.addPost();
     }

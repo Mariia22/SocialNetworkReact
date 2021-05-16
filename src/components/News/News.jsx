@@ -1,6 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import style from './News.module.css'
 
 const News = () => {
     return (
