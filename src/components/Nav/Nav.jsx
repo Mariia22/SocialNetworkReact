@@ -9,6 +9,9 @@ const Nav = () => {
                 <NavLink to='/profile' activeClassName={style.activeLink}>Home</NavLink>
             </li>
             <li>
+                <NavLink to='/users' activeClassName={style.activeLink}>Users</NavLink>
+            </li>
+            <li>
                 <NavLink to='/dialog' activeClassName={style.activeLink}>Messages</NavLink>
             </li>
             <li>
