@@ -1,11 +1,12 @@
 .friendList{
   display:flex;
-  flex-direction: column;
+  flex-wrap: wrap;
 }
 .friendItem{
   display: flex;
   flex-direction: column;
-  margin: 10px;
+  align-items: center;
+  margin: 30px;
  }
 .friendItem img{
  height: 50px;
@@ -20,3 +21,17 @@
   background-color: rgb(239, 76, 69);
   border: none;
  }
+ .selected{
+  color: rgb(239, 76, 69);
+  font-weight: bold;
+}
+.paginationList{
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 0.7rem;
+cursor: pointer;
+}
+.paginationList span{
+  margin: 0.1rem;
+}
