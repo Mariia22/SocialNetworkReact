@@ -1,8 +1,40 @@
+import React from 'react';
 import { connect } from 'react-redux';
 import { toggleFollowActionCreator, setFriendsActionCreator, setTotalCount, setCurrentPage } from './../../redux/friends_reduce';
+import * as axios from 'axios';
 import FriendList from './FriendList';
 
-const mapStateToProps = (state) => {
+class FriendContainer extends React.Component {
+    componentDidMount() {
+        if (this.props.users.length === 0) {
+            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+                .then(response => {
+                    this.props.setFriends(response.data.items);
+                    this.props.setTotalCount(response.data.totalCount)
+                });
+        }
+    }
+    changeCurrentPage = (currentPage) => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.setFriends(response.data.items);
+                this.props.setTotalCount(response.data.totalCount)
+            });
+        this.props.setCurrent(currentPage);
+    }
+    render() {
+        return (
+            <FriendList totalCount={this.props.totalCount}
+                pageSize={this.props.pageSize}
+                currentPage={this.props.currentPage}
+                changeCurrentPage={this.changeCurrentPage}
+                toggleFollowing={this.props.toggleFollowing}
+                users={this.props.users} />
+        )
+    }
+}
+
+let mapStateToProps = (state) => {
     return {
         users: state.users.users,
         totalCount: state.users.totalCount,
@@ -10,7 +42,7 @@ const mapStateToProps = (state) => {
         currentPage: state.users.currentPage
     }
 }
-const mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = (dispatch) => {
     return {
         toggleFollowing: (userId) => { dispatch(toggleFollowActionCreator(userId)) },
         setFriends: (users) => { dispatch(setFriendsActionCreator(users)) },
@@ -18,5 +50,4 @@ const mapDispatchToProps = (dispatch) => {
         setCurrent: (currentPage) => { dispatch(setCurrentPage(currentPage)) }
     }
 }
-const FriendContainer = connect(mapStateToProps, mapDispatchToProps)(FriendList);
-export default FriendContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(FriendContainer);
