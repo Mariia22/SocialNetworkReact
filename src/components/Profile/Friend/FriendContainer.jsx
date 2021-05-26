@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { toggleFollowActionCreator, setFriendsActionCreator, setTotalCount, setCurrentPage, setIsLoading } from './../../redux/friends_reduce';
+import { toggleFollowing, setFriends, setTotalCount, setCurrentPage, setIsLoading } from './../../redux/friends_reduce';
 import * as axios from 'axios';
 import FriendList from './FriendList';
 import Preload from './../../Common/Preload';
@@ -25,7 +25,7 @@ class FriendContainer extends React.Component {
                 this.props.setTotalCount(response.data.totalCount);
                 this.props.setIsLoading(false);
             });
-        this.props.setCurrent(currentPage);
+        this.props.setCurrentPage(currentPage);
     }
     render() {
         return <>
@@ -49,13 +49,4 @@ const mapStateToProps = (state) => {
         isLoading: state.users.isLoading
     }
 }
-const mapDispatchToProps = (dispatch) => {
-    return {
-        toggleFollowing: (userId) => { dispatch(toggleFollowActionCreator(userId)) },
-        setFriends: (users) => { dispatch(setFriendsActionCreator(users)) },
-        setTotalCount: (totalCount) => { dispatch(setTotalCount(totalCount)) },
-        setCurrent: (currentPage) => { dispatch(setCurrentPage(currentPage)) },
-        setIsLoading: (isLoading) => { dispatch(setIsLoading(isLoading)) }
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(FriendContainer);
+export default connect(mapStateToProps, { toggleFollowing, setFriends, setTotalCount, setCurrentPage, setIsLoading })(FriendContainer);

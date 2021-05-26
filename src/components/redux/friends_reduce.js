@@ -44,8 +44,8 @@ const friendReducer = (state = initialState, action) => {
     }
 }
 
-export const toggleFollowActionCreator = (userId) => ({ type: TOGGLE_FOLLOWING, userId })
-export const setFriendsActionCreator = (users) => ({ type: SET_FRIENDS, users })
+export const toggleFollowing = (userId) => ({ type: TOGGLE_FOLLOWING, userId })
+export const setFriends = (users) => ({ type: SET_FRIENDS, users })
 export const setTotalCount = (totalCount) => ({ type: SET_TOTAL_COUNT, totalCount })
 export const setCurrentPage = (currentPage) => ({ type: CURRENT_PAGE, currentPage })
 export const setIsLoading = (isLoading) => ({ type: IS_LOADING, isLoading })
