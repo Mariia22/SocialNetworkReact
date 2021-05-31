@@ -1,5 +1,7 @@
 const ADD_POST = 'ADD-POST';
 const CHANGE_POST = 'CHANGE-POST';
+const SET_LOADING_PPOFILE = 'SET-LOADING-PPOFILE ';
+const SET_PROFILE = 'SET-PROFILE';
 
 let initialState = {
     postData: [
@@ -7,7 +9,9 @@ let initialState = {
         { id: 2, message: 'How are you?', like: 3 },
         { id: 3, message: 'I am OK', like: 7 },
     ],
-    newPostText: ''
+    newPostText: '',
+    profile: [],
+    isLoadingProfile: false
 }
 const postReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -24,10 +28,20 @@ const postReducer = (state = initialState, action) => {
                 newPostText: action.text
             }
         }
+        case SET_LOADING_PPOFILE:
+            return {
+                ...state, isLoadingProfile: action.isLoadingProfile
+            }
+        case SET_PROFILE:
+            return {
+                ...state, profile: action.profile
+            }
         default: { return state; }
     }
 }
-export const addPostActionCreator = () => ({ type: ADD_POST })
-export const changePostActionCreator = (text) => ({ type: CHANGE_POST, text: text })
+export const addPost = () => ({ type: ADD_POST })
+export const changePost = (text) => ({ type: CHANGE_POST, text: text })
+export const setLoadingProfile = (isLoadingProfile) => ({ type: SET_LOADING_PPOFILE, isLoadingProfile })
+export const setProfile = (profile) => ({ type: SET_PROFILE, profile })
 
 export default postReducer;

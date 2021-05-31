@@ -7,13 +7,6 @@ body{
   background-color:rgb(242, 242, 242);
 }
 
-.app_wrapper{
-  display:grid;
-  grid-template-columns: 30% 70%;
-  margin: 0 auto;
-}
-
-
 
 
 
