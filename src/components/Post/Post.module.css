@@ -1,10 +1,13 @@
 .appPost{
-  margin: 50px;
+  margin: 20px 10px;
+}
+.appPostList{
+  display:grid;
+  grid-template-columns: 30% 70%;
 }
 .appPostForm{
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  flex-direction: column;
 }
 .appPostInput{
    width: 80%;
@@ -21,10 +24,11 @@
     color: white;
     width: 120px;
     height: 40px;
+    margin-top: 10px;
   }
 
   .appPost span{
-    margin-left: 50px;
+    margin-left: 10px;
     color: rgb(239, 76, 69);
     font-size: 0.8rem;
   }

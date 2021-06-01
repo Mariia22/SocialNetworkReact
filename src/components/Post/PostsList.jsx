@@ -5,23 +5,22 @@ import Profile from './../Profile/Profile';
 
 
 const PostList = (props) => {
-    console.log('fggg');
-    const postMessage = props.posts.map(post => <Post message={post.message} like={post.like} key={post.id} />)
+    const postMessage = props.posts.posts.map(post => <Post message={post.message} like={post.like} key={post.id} />)
     const addPost = () => {
-        props.addPost();
+        props.posts.addPost();
     }
     const changePost = (e) => {
         let text = e.target.value;
-        props.changePost(text);
+        props.posts.changePost(text);
     }
     return (
         <div className={style.appPostList}>
-            <Profile />
+            <Profile profile={props} />
             <div className={style.appPostForm}>
-                <textarea className={style.appPostInput} value={props.newPostText} onChange={changePost}></textarea>
+                <textarea className={style.appPostInput} value={props.posts.newPostText} onChange={changePost}></textarea>
                 <button className={style.appPostButton} onClick={addPost}>Post</button>
+                {postMessage}
             </div>
-            {postMessage}
         </div>
     );
 }

@@ -6,7 +6,7 @@ const Nav = () => {
     return (
         <ul className={style.appNav}>
             <li>
-                <NavLink to='/profile' activeClassName={style.activeLink}>Home</NavLink>
+                <NavLink to='/profile/1' activeClassName={style.activeLink}>Home</NavLink>
             </li>
             <li>
                 <NavLink to='/users' activeClassName={style.activeLink}>Users</NavLink>
