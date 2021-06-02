@@ -2,6 +2,7 @@ import React from 'react';
 import style from './Post.module.css'
 import Post from './Post';
 import Profile from './../Profile/Profile';
+import ProfileFriend from './../Profile/ProfileFriend';
 
 
 const PostList = (props) => {
@@ -15,7 +16,7 @@ const PostList = (props) => {
     }
     return (
         <div className={style.appPostList}>
-            <Profile profile={props} />
+            {props.posts.isLoadingProfile ? <ProfileFriend profile={props} /> : <Profile />}
             <div className={style.appPostForm}>
                 <textarea className={style.appPostInput} value={props.posts.newPostText} onChange={changePost}></textarea>
                 <button className={style.appPostButton} onClick={addPost}>Post</button>
