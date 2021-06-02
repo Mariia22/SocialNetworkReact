@@ -15,3 +15,7 @@
     color:white;
     text-decoration: underline;
   }
+
+  .appNav li:last-child{
+    margin-left: 50px;
+  }

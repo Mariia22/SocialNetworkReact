@@ -23,6 +23,9 @@ const Nav = () => {
             <li>
                 <NavLink to='/settings' activeClassName={style.activeLink}>Settings</NavLink>
             </li>
+            <li>
+                <NavLink to='/login' activeClassName={style.activeLink}>Login</NavLink>
+            </li>
         </ul >
     );
 }

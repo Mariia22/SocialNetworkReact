@@ -7,6 +7,7 @@ import PostsList from './PostsList';
 
 class PostListContainer extends React.Component {
     componentDidMount() {
+        this.props.setLoadingProfile(false);
         let userId = this.props.match.params.userId || 1;
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
             this.props.setProfile(response.data);
