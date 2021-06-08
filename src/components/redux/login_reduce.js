@@ -3,7 +3,6 @@ const GET_LOGIN = 'GET-LOGIN';
 
 let initialState = {
     login: null,
-    password: null,
     email: null,
     isSetLogin: false
 }
@@ -24,6 +23,6 @@ const loginReducer = (state = initialState, action) => {
         default: { return state }
     }
 }
-export const getLogin = (login, password, email) => ({ type: GET_LOGIN, data: { login, password, email } })
+export const getLogin = (login, password, email) => ({ type: GET_LOGIN, data: { login, email } })
 export const setLogin = (isSetLogin) => ({ type: SET_LOGIN, isSetLogin })
 export default loginReducer;
