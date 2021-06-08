@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom'
-import Header from './components/Header/Header';
+import HeaderContainer from './components/Header/HeaderContainer';
 import PostListContainer from './components/Post/PostsListContainer';
 import FriendContainer from './components/Profile/Friend/FriendContainer';
 import DialogListContainer from './components/Dialogs/DialogListContainer';
@@ -13,7 +13,7 @@ const App = (props) => {
   return (
     <BrowserRouter>
       <div className="app_wrapper">
-        <Header />
+        <HeaderContainer store={props.store} />
         <div className="app_wrapper_content">
           <Route path='/profile/:userId' render={() => <PostListContainer store={props.store} />} />
           <Route path='/users' render={() => <FriendContainer store={props.store} />} />

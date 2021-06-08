@@ -2,7 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './Nav.module.css'
 
-const Nav = () => {
+const Nav = (props) => {
+    console.log(props);
     return (
         <ul className={style.appNav}>
             <li>
@@ -24,7 +25,7 @@ const Nav = () => {
                 <NavLink to='/settings' activeClassName={style.activeLink}>Settings</NavLink>
             </li>
             <li>
-                <NavLink to='/login' activeClassName={style.activeLink}>Login</NavLink>
+                {props.login.isSetLogin ? props.login.login : <NavLink to='/login' activeClassName={style.activeLink}>Login</NavLink>}
             </li>
         </ul >
     );

@@ -4,12 +4,12 @@ import Nav from '../Nav/Nav';
 import Search from './Search';
 import style from './Header.module.css'
 
-const Header = () => {
+const Header = (props) => {
     return (
         <header className={style.header}>
             <Logo />
             <Search />
-            <Nav />
+            <Nav login={props.login} />
         </header>
     );
 }
