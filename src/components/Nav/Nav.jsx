@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import style from './Nav.module.css'
 
 const Nav = (props) => {
-    console.log(props);
     return (
         <ul className={style.appNav}>
             <li>

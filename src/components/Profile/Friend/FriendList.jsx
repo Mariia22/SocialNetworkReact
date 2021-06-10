@@ -2,12 +2,38 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './Friend.module.css';
 import userLogo from './../../../images/user.png';
+import * as axios from 'axios';
 
 const FriendList = (props) => {
     let count = Math.ceil(props.totalCount / props.pageSize);
     let pagination = [];
     for (let i = 1; i <= count; i++) {
         pagination.push(i)
+    }
+    const changeToggle = (id, follow) => {
+        if (follow) {
+            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {
+                withCredentials: true, headers: {
+                    'API-KEY': "1fc50f62-a8c6-466e-a15c-d8ecbf2f8fce"
+                }
+            }).then(response => {
+                if (response.data.resultCode === 0) {
+                    props.toggleFollowing();
+                }
+            });
+        }
+        else {
+            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {
+                withCredentials: true, headers: {
+                    'API-KEY': "1fc50f62-a8c6-466e-a15c-d8ecbf2f8fce"
+                }
+            })
+                .then(response => {
+                    if (response.data.resultCode === 0) {
+                        props.toggleFollowing();
+                    }
+                });
+        }
     }
     return <div>
         <div className={style.paginationList}>
@@ -24,7 +50,7 @@ const FriendList = (props) => {
                             <img src={user.photos.small ? user.photos.small : userLogo} alt="friend" />
                         </NavLink>
                         <span>{user.name}</span>
-                        <button onClick={() => props.toggleFollowing(user.id)}>{user.follow ? 'Follow' : 'Unfollow'}</button>
+                        <button onClick={() => changeToggle(user.id, user.follow)}>{user.follow ? 'Follow' : 'Unfollow'}</button>
                     </div>
                 )
             }
