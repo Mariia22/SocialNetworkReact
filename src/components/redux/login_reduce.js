@@ -23,6 +23,6 @@ const loginReducer = (state = initialState, action) => {
         default: { return state }
     }
 }
-export const getLogin = (login, password, email) => ({ type: GET_LOGIN, data: { login, email } })
+export const getLogin = (login, email) => ({ type: GET_LOGIN, data: { login, email } })
 export const setLogin = (isSetLogin) => ({ type: SET_LOGIN, isSetLogin })
 export default loginReducer;

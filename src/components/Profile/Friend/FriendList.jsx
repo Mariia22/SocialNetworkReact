@@ -12,9 +12,10 @@ const FriendList = (props) => {
     }
     const changeToggle = (id, follow) => {
         if (follow) {
-            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {
-                withCredentials: true, headers: {
-                    'API-KEY': "1fc50f62-a8c6-466e-a15c-d8ecbf2f8fce"
+            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`,null , {
+                withCredentials: true,
+                headers: {
+                    'API-KEY': '1fc50f62- a8c6 - 466e-a15c- d8ecbf2f8fce'
                 }
             }).then(response => {
                 if (response.data.resultCode === 0) {
@@ -24,8 +25,9 @@ const FriendList = (props) => {
         }
         else {
             axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {
-                withCredentials: true, headers: {
-                    'API-KEY': "1fc50f62-a8c6-466e-a15c-d8ecbf2f8fce"
+                withCredentials: true,
+                headers: {
+                    'API-KEY': '1fc50f62- a8c6 - 466e-a15c- d8ecbf2f8fce'
                 }
             })
                 .then(response => {
