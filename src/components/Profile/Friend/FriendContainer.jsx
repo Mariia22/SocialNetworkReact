@@ -9,18 +9,18 @@ class FriendContainer extends React.Component {
     componentDidMount() {
         this.props.setIsLoading(true);
         if (this.props.users.length === 0) {
-            userAPI.getUser(this.props.currentPage, this.props.pageSize).then(response => {
-                this.props.setFriends(response.items);
-                this.props.setTotalCount(response.totalCount);
+            userAPI.getUser(this.props.currentPage, this.props.pageSize).then(data => {
+                this.props.setFriends(data.items);
+                this.props.setTotalCount(data.totalCount);
                 this.props.setIsLoading(false);
             });
         }
     }
     changeCurrentPage = (currentPage) => {
         this.props.setIsLoading(true);
-        userAPI.getUser(this.props.currentPage, this.props.pageSize).then(response => {
-            this.props.setFriends(response.items);
-            this.props.setTotalCount(response.totalCount);
+        userAPI.getUser(this.props.currentPage, this.props.pageSize).then(data => {
+            this.props.setFriends(data.items);
+            this.props.setTotalCount(data.totalCount);
             this.props.setIsLoading(false);
         });
         this.props.setCurrentPage(currentPage);

@@ -2,7 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './Friend.module.css';
 import userLogo from './../../../images/user.png';
-import * as axios from 'axios';
+import { followAPI, unfollowAPI } from '../../API/api';
+
 
 const FriendList = (props) => {
     let count = Math.ceil(props.totalCount / props.pageSize);
@@ -11,30 +12,21 @@ const FriendList = (props) => {
         pagination.push(i)
     }
     const changeToggle = (id, follow) => {
+        console.log(props.users);
         if (follow) {
-            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`,null , {
-                withCredentials: true,
-                headers: {
-                    'API-KEY': '1fc50f62- a8c6 - 466e-a15c- d8ecbf2f8fce'
-                }
-            }).then(response => {
-                if (response.data.resultCode === 0) {
-                    props.toggleFollowing();
+            unfollowAPI.unfollow(id).then(data => {
+                if (data.resultCode === 0) {
+                    props.toggleFollowing(id);
                 }
             });
         }
         else {
-            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {
-                withCredentials: true,
-                headers: {
-                    'API-KEY': '1fc50f62- a8c6 - 466e-a15c- d8ecbf2f8fce'
+            followAPI.follow(id).then(data => {
+                console.log(data)
+                if (data.resultCode === 0) {
+                    props.toggleFollowing(id);
                 }
-            })
-                .then(response => {
-                    if (response.data.resultCode === 0) {
-                        props.toggleFollowing();
-                    }
-                });
+            });
         }
     }
     return <div>
@@ -52,7 +44,7 @@ const FriendList = (props) => {
                             <img src={user.photos.small ? user.photos.small : userLogo} alt="friend" />
                         </NavLink>
                         <span>{user.name}</span>
-                        <button onClick={() => changeToggle(user.id, user.follow)}>{user.follow ? 'Follow' : 'Unfollow'}</button>
+                        <button onClick={() => changeToggle(user.id, user.followed)}>{user.followed ? 'Follow' : 'Unfollow'}</button>
                     </div>
                 )
             }

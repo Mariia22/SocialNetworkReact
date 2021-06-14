@@ -19,7 +19,7 @@ const friendReducer = (state = initialState, action) => {
                 users: state.users.map(
                     user => {
                         if (user.id === action.userId) {
-                            user.follow = !user.follow;
+                            user.followed = !user.followed;
                         }
                         return user;
                     })
