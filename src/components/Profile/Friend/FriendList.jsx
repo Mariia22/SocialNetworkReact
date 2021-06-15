@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './Friend.module.css';
 import userLogo from './../../../images/user.png';
-import { followAPI, unfollowAPI } from '../../API/api';
+import { userAPI } from '../../API/api';
 
 
 const FriendList = (props) => {
@@ -14,14 +14,14 @@ const FriendList = (props) => {
     const changeToggle = (id, follow) => {
         console.log(props.users);
         if (follow) {
-            unfollowAPI.unfollow(id).then(data => {
+            userAPI.unfollow(id).then(data => {
                 if (data.resultCode === 0) {
                     props.toggleFollowing(id);
                 }
             });
         }
         else {
-            followAPI.follow(id).then(data => {
+            userAPI.follow(id).then(data => {
                 console.log(data)
                 if (data.resultCode === 0) {
                     props.toggleFollowing(id);
@@ -44,7 +44,7 @@ const FriendList = (props) => {
                             <img src={user.photos.small ? user.photos.small : userLogo} alt="friend" />
                         </NavLink>
                         <span>{user.name}</span>
-                        <button onClick={() => changeToggle(user.id, user.followed)}>{user.followed ? 'Follow' : 'Unfollow'}</button>
+                        <button disabled={props.isFetching.some(id => id === user.id)} onClick={() => changeToggle(user.id, user.followed)}>{user.followed ? 'Follow' : 'Unfollow'}</button>
                     </div>
                 )
             }
