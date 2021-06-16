@@ -38,3 +38,6 @@ margin: 10px;
 .paginationList span{
   margin: 0.1rem;
 }
+button:disabled{
+  background-color: grey;
+}

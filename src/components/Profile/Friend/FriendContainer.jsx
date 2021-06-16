@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { toggleFollowing, setFriends, setTotalCount, setCurrentPage, setIsLoading } from './../../redux/friends_reduce';
+import { toggleFollowing, setFriends, setTotalCount, setCurrentPage, setIsLoading, setIsFetching } from './../../redux/friends_reduce';
 import FriendList from './FriendList';
 import Preload from './../../Common/Preload';
 import { userAPI } from '../../API/api';
@@ -33,7 +33,9 @@ class FriendContainer extends React.Component {
                 currentPage={this.props.currentPage}
                 changeCurrentPage={this.changeCurrentPage}
                 toggleFollowing={this.props.toggleFollowing}
-                users={this.props.users} />
+                users={this.props.users}
+                isFetching={this.props.isFetching}
+                setIsFetching={this.props.setIsFetching} />
         </>
     }
 }
@@ -44,7 +46,8 @@ const mapStateToProps = (state) => {
         totalCount: state.users.totalCount,
         pageSize: state.users.pageSize,
         currentPage: state.users.currentPage,
-        isLoading: state.users.isLoading
+        isLoading: state.users.isLoading,
+        isFetching: state.users.isFetching
     }
 }
-export default connect(mapStateToProps, { toggleFollowing, setFriends, setTotalCount, setCurrentPage, setIsLoading })(FriendContainer);
+export default connect(mapStateToProps, { toggleFollowing, setFriends, setTotalCount, setCurrentPage, setIsLoading, setIsFetching })(FriendContainer);

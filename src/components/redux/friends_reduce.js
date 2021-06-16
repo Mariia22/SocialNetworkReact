@@ -44,7 +44,7 @@ const friendReducer = (state = initialState, action) => {
             }
         case IS_FETCHING:
             return {
-                ...state, isFetching: action.isFetching ? [...state.isFetching, action.userId] : state.filter(userId => userId !== action.userId)
+                ...state, isFetching: action.isFetching ? [...state.isFetching, action.userId] : state.isFetching.filter(userId => userId !== action.userId)
             }
         default: return state
     }
@@ -56,4 +56,13 @@ export const setTotalCount = (totalCount) => ({ type: SET_TOTAL_COUNT, totalCoun
 export const setCurrentPage = (currentPage) => ({ type: CURRENT_PAGE, currentPage })
 export const setIsLoading = (isLoading) => ({ type: IS_LOADING, isLoading })
 export const setIsFetching = (isFetching, userId) => ({ type: IS_FETCHING, isFetching, userId })
+export const getUsers = (currentPage = 1, pageSize = 99) => {
+    return (dispatch) => {
+        userAPI.getUser(currentPage, pageSize).then(data => {
+            dispatch(setFriends(data.items));
+            dispatch(setTotalCount(data.totalCount));
+            dispatch(setIsLoading(false));
+        })
+    }
+}
 export default friendReducer;

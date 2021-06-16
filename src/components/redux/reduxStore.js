@@ -1,4 +1,5 @@
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import dialogReducer from './dialogs_reduce';
 import postReducer from './posts_reduce';
 import friendReducer from './friends_reduce';
@@ -10,6 +11,6 @@ let reducers = combineReducers({
     users: friendReducer,
     login: loginReducer
 });
-const store = createStore(reducers);
+const store = createStore(reducers, applyMiddleware(thunk));
 window.store = store;
 export default store;

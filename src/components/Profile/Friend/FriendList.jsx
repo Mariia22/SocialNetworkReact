@@ -4,7 +4,6 @@ import style from './Friend.module.css';
 import userLogo from './../../../images/user.png';
 import { userAPI } from '../../API/api';
 
-
 const FriendList = (props) => {
     let count = Math.ceil(props.totalCount / props.pageSize);
     let pagination = [];
@@ -12,19 +11,20 @@ const FriendList = (props) => {
         pagination.push(i)
     }
     const changeToggle = (id, follow) => {
-        console.log(props.users);
+        props.setIsFetching(true, id);
         if (follow) {
             userAPI.unfollow(id).then(data => {
                 if (data.resultCode === 0) {
                     props.toggleFollowing(id);
+                    props.setIsFetching(false, id);
                 }
             });
         }
         else {
             userAPI.follow(id).then(data => {
-                console.log(data)
                 if (data.resultCode === 0) {
                     props.toggleFollowing(id);
+                    props.setIsFetching(false, id);
                 }
             });
         }
@@ -39,7 +39,7 @@ const FriendList = (props) => {
         <div className={style.friendList} >
             {
                 props.users.map(user =>
-                    <div className={style.friendItem} key={user.id}>
+                    <div className={style.friendItem}>
                         <NavLink to={'/profile/' + user.id}>
                             <img src={user.photos.small ? user.photos.small : userLogo} alt="friend" />
                         </NavLink>
