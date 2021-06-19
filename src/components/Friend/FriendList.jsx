@@ -2,7 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './Friend.module.css';
 import userLogo from './../../../images/user.png';
-import { userAPI } from '../../API/api';
 
 const FriendList = (props) => {
     let count = Math.ceil(props.totalCount / props.pageSize);
@@ -12,22 +11,7 @@ const FriendList = (props) => {
     }
     const changeToggle = (id, follow) => {
         props.setIsFetching(true, id);
-        if (follow) {
-            userAPI.unfollow(id).then(data => {
-                if (data.resultCode === 0) {
-                    props.toggleFollowing(id);
-                    props.setIsFetching(false, id);
-                }
-            });
-        }
-        else {
-            userAPI.follow(id).then(data => {
-                if (data.resultCode === 0) {
-                    props.toggleFollowing(id);
-                    props.setIsFetching(false, id);
-                }
-            });
-        }
+        follow ? props.unfollowUser(id) : props.followUser(id);
     }
     return <div>
         <div className={style.paginationList}>

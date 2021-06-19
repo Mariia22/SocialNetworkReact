@@ -2,7 +2,7 @@ import React from 'react';
 import foto from './../../images/foto.jpeg';
 import style from './Profile.module.css'
 
-const Profile = (props) => {
+const Profile = () => {
     return (
         <div className={style.appProfile}>
             <div className={style.appProfileRed}></div>

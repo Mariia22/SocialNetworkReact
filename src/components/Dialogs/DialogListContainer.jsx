@@ -6,7 +6,8 @@ const mapStateToProps = (state) => {
     return {
         messages: state.dialogs.messageData,
         dialogs: state.dialogs.dialogData,
-        newMessage: state.dialogs.newMessage
+        newMessage: state.dialogs.newMessage,
+        login: state.login.isSetLogin
     }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -15,5 +16,6 @@ const mapDispatchToProps = (dispatch) => {
         changeMessage: (message) => { dispatch(changeMessageActionCreator(message)) }
     }
 }
+
 const DialogListContainer = connect(mapStateToProps, mapDispatchToProps)(DialogList);
 export default DialogListContainer;

@@ -1,3 +1,5 @@
+import { authAPI } from './../API/api';
+
 const SET_LOGIN = 'SET-LOGIN';
 const GET_LOGIN = 'GET-LOGIN';
 
@@ -23,6 +25,16 @@ const loginReducer = (state = initialState, action) => {
         default: { return state }
     }
 }
-export const getLogin = (login, email) => ({ type: GET_LOGIN, data: { login, email } })
+const getLogin = (login, email) => ({ type: GET_LOGIN, data: { login, email } })
 export const setLogin = (isSetLogin) => ({ type: SET_LOGIN, isSetLogin })
+export const getAuth = () => (dispatch) => {
+    authAPI.getAuth().then(response => {
+        if (response.resultCode === 0) {
+            let { login, email } = response.data;
+            dispatch(getLogin(login, email))
+            dispatch(setLogin(true))
+        }
+
+    })
+}
 export default loginReducer;

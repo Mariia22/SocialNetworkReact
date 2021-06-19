@@ -1,3 +1,5 @@
+import { userAPI } from "../API/api";
+
 const TOGGLE_FOLLOWING = 'TOGGLE-FOLLOWING';
 const SET_FRIENDS = 'SET-FRIENDS';
 const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT';
@@ -51,18 +53,33 @@ const friendReducer = (state = initialState, action) => {
 }
 
 export const toggleFollowing = (userId) => ({ type: TOGGLE_FOLLOWING, userId })
-export const setFriends = (users) => ({ type: SET_FRIENDS, users })
-export const setTotalCount = (totalCount) => ({ type: SET_TOTAL_COUNT, totalCount })
+const setFriends = (users) => ({ type: SET_FRIENDS, users })
+const setTotalCount = (totalCount) => ({ type: SET_TOTAL_COUNT, totalCount })
 export const setCurrentPage = (currentPage) => ({ type: CURRENT_PAGE, currentPage })
 export const setIsLoading = (isLoading) => ({ type: IS_LOADING, isLoading })
 export const setIsFetching = (isFetching, userId) => ({ type: IS_FETCHING, isFetching, userId })
-export const getUsers = (currentPage = 1, pageSize = 99) => {
-    return (dispatch) => {
-        userAPI.getUser(currentPage, pageSize).then(data => {
-            dispatch(setFriends(data.items));
-            dispatch(setTotalCount(data.totalCount));
-            dispatch(setIsLoading(false));
-        })
-    }
+export const getUsers = (currentPage = 1, pageSize = 99) => (dispatch) => {
+    userAPI.getUser(currentPage, pageSize).then(data => {
+        dispatch(setFriends(data.items));
+        dispatch(setTotalCount(data.totalCount));
+        dispatch(setIsLoading(false));
+    })
+}
+export const followUser = (userId) => (dispatch) => {
+    userAPI.follow(userId).then(data => {
+        if (data.resultCode === 0) {
+            dispatch(toggleFollowing(userId));
+            dispatch(setIsFetching(false, userId));
+        }
+    })
+}
+export const unfollowUser = (userId) => (dispatch) => {
+    userAPI.unfollow(userId).then(data => {
+        if (data.resultCode === 0) {
+            dispatch(toggleFollowing(userId));
+            dispatch(setIsFetching(false, userId));
+        }
+    });
+
 }
 export default friendReducer;

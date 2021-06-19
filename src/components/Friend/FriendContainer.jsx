@@ -1,29 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { toggleFollowing, setFriends, setTotalCount, setCurrentPage, setIsLoading, setIsFetching } from './../../redux/friends_reduce';
+import { setCurrentPage, setIsFetching, getUsers, setIsLoading, followUser, unfollowUser } from '../redux/friends_reduce';
 import FriendList from './FriendList';
-import Preload from './../../Common/Preload';
-import { userAPI } from '../../API/api';
+import Preload from '../Common/Preload';
 
 class FriendContainer extends React.Component {
     componentDidMount() {
         this.props.setIsLoading(true);
         if (this.props.users.length === 0) {
-            userAPI.getUser(this.props.currentPage, this.props.pageSize).then(data => {
-                this.props.setFriends(data.items);
-                this.props.setTotalCount(data.totalCount);
-                this.props.setIsLoading(false);
-            });
+            this.props.getUsers(this.props.currentPage, this.props.pageSize)
         }
     }
     changeCurrentPage = (currentPage) => {
         this.props.setIsLoading(true);
-        userAPI.getUser(this.props.currentPage, this.props.pageSize).then(data => {
-            this.props.setFriends(data.items);
-            this.props.setTotalCount(data.totalCount);
-            this.props.setIsLoading(false);
-        });
         this.props.setCurrentPage(currentPage);
+        this.props.getUsers(currentPage, this.props.pageSize);
     }
     render() {
         return <>
@@ -32,14 +23,14 @@ class FriendContainer extends React.Component {
                 pageSize={this.props.pageSize}
                 currentPage={this.props.currentPage}
                 changeCurrentPage={this.changeCurrentPage}
-                toggleFollowing={this.props.toggleFollowing}
+                followUser={this.props.followUser}
+                unfollowUser={this.props.unfollowUser}
                 users={this.props.users}
                 isFetching={this.props.isFetching}
                 setIsFetching={this.props.setIsFetching} />
         </>
     }
 }
-
 const mapStateToProps = (state) => {
     return {
         users: state.users.users,
@@ -50,4 +41,4 @@ const mapStateToProps = (state) => {
         isFetching: state.users.isFetching
     }
 }
-export default connect(mapStateToProps, { toggleFollowing, setFriends, setTotalCount, setCurrentPage, setIsLoading, setIsFetching })(FriendContainer);
+export default connect(mapStateToProps, { setCurrentPage, setIsLoading, setIsFetching, getUsers, followUser, unfollowUser })(FriendContainer);
