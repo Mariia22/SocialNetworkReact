@@ -1,23 +1,19 @@
 import React from 'react';
-import * as axios from 'axios';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { addPost, changePost, setProfile, setLoadingProfile } from '../redux/posts_reduce.js';
+import { addPost, changePost, getProfile, setLoadingProfile } from '../redux/posts_reduce.js';
 import PostsList from './PostsList';
+import { withAuthRedirected } from './../HOC/Auth'
 
 class PostListContainer extends React.Component {
     componentDidMount() {
         this.props.setLoadingProfile(false);
         let userId = this.props.match.params.userId || 1;
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
-            this.props.setProfile(response.data);
-            this.props.setLoadingProfile(true);
-        });
+        this.props.getProfile(userId);
     }
     render() {
         return <div><PostsList posts={this.props} /></div>
     }
-
 }
 const mapStateToProps = (state) => {
     return {
@@ -28,4 +24,4 @@ const mapStateToProps = (state) => {
     }
 }
 let urlProfile = withRouter(PostListContainer);
-export default connect(mapStateToProps, { addPost, changePost, setProfile, setLoadingProfile })(urlProfile);
+export default withAuthRedirected(connect(mapStateToProps, { addPost, changePost, getProfile, setLoadingProfile })(urlProfile));

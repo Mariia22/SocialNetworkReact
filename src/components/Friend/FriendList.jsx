@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './Friend.module.css';
-import userLogo from './../../../images/user.png';
+import userLogo from './../../images/user.png';
 
 const FriendList = (props) => {
     let count = Math.ceil(props.totalCount / props.pageSize);

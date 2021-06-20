@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 import { addMessageActionCreator, changeMessageActionCreator } from '../redux/dialogs_reduce.js'
 import DialogList from './DialogList.jsx';
+import { withAuthRedirected } from './../HOC/Auth'
 
 const mapStateToProps = (state) => {
     return {
         messages: state.dialogs.messageData,
         dialogs: state.dialogs.dialogData,
         newMessage: state.dialogs.newMessage,
-        login: state.login.isSetLogin
     }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -17,5 +17,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const DialogListContainer = connect(mapStateToProps, mapDispatchToProps)(DialogList);
-export default DialogListContainer;
+export default withAuthRedirected(connect(mapStateToProps, mapDispatchToProps)(DialogList));

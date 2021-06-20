@@ -1,11 +1,9 @@
 import React from 'react';
 import style from './Dialog.module.css';
-import { Redirect } from 'react-router-dom';
 import MessageItem from './Message/Message';
 import DialogItem from './DialogItem/DialogItem';
 
 const DialogList = (props) => {
-    console.log(props);
     const messageItem = props.messages.map(message => <MessageItem message={message.message} key={message.id} />);
     const dialogItem = props.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id} key={dialog.id} />);
 
@@ -16,7 +14,6 @@ const DialogList = (props) => {
         let message = e.target.value;
         props.changeMessage(message);
     }
-    if (!props.login) { <Redirect to='login' /> }
     return (
         <div className={style.dialogs}>
             <ul className={style.dialog}>

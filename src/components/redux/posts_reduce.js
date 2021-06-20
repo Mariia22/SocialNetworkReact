@@ -1,3 +1,5 @@
+import { postAPI } from "../API/api";
+
 const ADD_POST = 'ADD-POST';
 const CHANGE_POST = 'CHANGE-POST';
 const SET_PROFILE = 'SET-PROFILE';
@@ -41,7 +43,12 @@ const postReducer = (state = initialState, action) => {
 }
 export const addPost = () => ({ type: ADD_POST })
 export const changePost = (text) => ({ type: CHANGE_POST, text: text })
-export const setProfile = (profile) => ({ type: SET_PROFILE, profile })
+const setProfile = (profile) => ({ type: SET_PROFILE, profile })
 export const setLoadingProfile = (isLoadingProfile) => ({ type: SET_ISLOADING, isLoadingProfile })
-
+export const getProfile = (userId) => (dispatch) => {
+    postAPI.getProfile(userId).then(data => {
+        dispatch(setProfile(data));
+        dispatch(setLoadingProfile(true));
+    });
+}
 export default postReducer;
