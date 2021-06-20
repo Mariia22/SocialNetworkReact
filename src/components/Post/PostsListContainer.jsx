@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { addPost, changePost, getProfile, setLoadingProfile } from '../redux/posts_reduce.js';
 import PostsList from './PostsList';
-import { withAuthRedirected } from './../HOC/Auth'
 
 class PostListContainer extends React.Component {
     componentDidMount() {
@@ -24,4 +23,4 @@ const mapStateToProps = (state) => {
     }
 }
 let urlProfile = withRouter(PostListContainer);
-export default withAuthRedirected(connect(mapStateToProps, { addPost, changePost, getProfile, setLoadingProfile })(urlProfile));
+export default connect(mapStateToProps, { addPost, changePost, getProfile, setLoadingProfile })(urlProfile);

@@ -16,7 +16,7 @@ const App = (props) => {
       <div className="app_wrapper">
         <HeaderContainer store={props.store} />
         <div className="app_wrapper_content">
-          <Route path='/profile/:userId' render={() => <PostListContainer store={props.store} />} />
+          <Route path='/profile/:userId?' render={() => <PostListContainer store={props.store} />} />
           <Route path='/users' render={() => <FriendContainer store={props.store} />} />
           <Route path='/dialog' render={() => <DialogListContainer store={props.store} />} />
           <Route path='/news' component={News} />
