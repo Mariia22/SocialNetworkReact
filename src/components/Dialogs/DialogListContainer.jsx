@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { addMessageActionCreator, changeMessageActionCreator } from '../redux/dialogs_reduce.js'
 import DialogList from './DialogList.jsx';
 import { withAuthRedirected } from './../HOC/Auth'
+import { compose } from 'redux';
 
 const mapStateToProps = (state) => {
     return {
@@ -16,5 +17,5 @@ const mapDispatchToProps = (dispatch) => {
         changeMessage: (message) => { dispatch(changeMessageActionCreator(message)) }
     }
 }
+export default compose(withAuthRedirected, connect(mapStateToProps, mapDispatchToProps))(DialogList)
 
-export default withAuthRedirected(connect(mapStateToProps, mapDispatchToProps)(DialogList));

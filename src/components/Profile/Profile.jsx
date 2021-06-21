@@ -1,6 +1,7 @@
 import React from 'react';
 import foto from './../../images/foto.jpeg';
-import style from './Profile.module.css'
+import style from './Profile.module.css';
+import ProfileStatus from './ProfileStatus';
 
 const Profile = () => {
     return (
@@ -10,6 +11,7 @@ const Profile = () => {
             <div className={style.appProfileWhite}>
                 <h3>Ushakova Mariia</h3>
                 <p>Frontend developer</p>
+                <ProfileStatus />
                 <div className={style.appProfileStatistic}>Following<span>34</span></div>
                 <div className={style.appProfileStatistic}>Followers<span>34</span></div>
                 <div className={style.appProfileView} ><a href='./home'>View Profile</a></div>
