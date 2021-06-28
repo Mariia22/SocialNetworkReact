@@ -1,5 +1,6 @@
 import React from 'react';
 import style from './Profile.module.css'
+import ProfileStatus from './ProfileStatus';
 
 const ProfileFriend = (props) => {
     return (
@@ -9,6 +10,7 @@ const ProfileFriend = (props) => {
             <div className={style.appProfileWhite}>
                 <h3>{props.profile.posts.profile.fullName}</h3>
                 <p>{props.profile.posts.profile.aboutMe}</p>
+                <ProfileStatus />
             </div>
         </div>
     );

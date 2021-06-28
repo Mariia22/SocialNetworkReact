@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { addPost, changePost, getProfile, setLoadingProfile } from '../redux/posts_reduce.js';
+import { addPost, changePost, getProfile, setLoadingProfile, getStatus, updateStatus } from '../redux/posts_reduce.js';
 import PostsList from './PostsList';
 
 class PostListContainer extends React.Component {
@@ -19,8 +19,9 @@ const mapStateToProps = (state) => {
         posts: state.posts.postData,
         newPostText: state.posts.newPostText,
         profile: state.posts.profile,
-        isLoadingProfile: state.posts.isLoadingProfile
+        isLoadingProfile: state.posts.isLoadingProfile,
+        status: state.posts.status
     }
 }
 let urlProfile = withRouter(PostListContainer);
-export default connect(mapStateToProps, { addPost, changePost, getProfile, setLoadingProfile })(urlProfile);
+export default connect(mapStateToProps, { addPost, changePost, getProfile, setLoadingProfile, getStatus, updateStatus })(urlProfile);

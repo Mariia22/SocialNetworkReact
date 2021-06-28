@@ -1,9 +1,11 @@
-import { postAPI } from "../API/api";
+import { profileAPI } from "../API/api";
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_POST = 'CHANGE-POST';
 const SET_PROFILE = 'SET-PROFILE';
 const SET_ISLOADING = 'SET-ISLOADING';
+const GET_STATUS = 'GET_STATUS';
+const UPDATE_STATUS = 'UPDATE_STATUS';
 
 let initialState = {
     postData: [
@@ -13,7 +15,8 @@ let initialState = {
     ],
     newPostText: '',
     profile: [],
-    isLoadingProfile: false
+    isLoadingProfile: false,
+    status: ''
 }
 const postReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -38,17 +41,42 @@ const postReducer = (state = initialState, action) => {
             return {
                 ...state, isLoadingProfile: action.isLoadingProfile
             }
+        case GET_STATUS:
+            return {
+                ...state, status: action.getStatus
+            }
+        case UPDATE_STATUS:
+            return {
+                ...state, status: action.updateStatus
+            }
         default: { return state; }
     }
 }
 export const addPost = () => ({ type: ADD_POST })
 export const changePost = (text) => ({ type: CHANGE_POST, text: text })
 const setProfile = (profile) => ({ type: SET_PROFILE, profile })
+const setStatus = (status) => ({ type: GET_STATUS, status })
+const newStatus = (status) => ({ type: UPDATE_STATUS, status })
 export const setLoadingProfile = (isLoadingProfile) => ({ type: SET_ISLOADING, isLoadingProfile })
 export const getProfile = (userId) => (dispatch) => {
-    postAPI.getProfile(userId).then(data => {
+    profileAPI.getProfile(userId).then(data => {
         dispatch(setProfile(data));
         dispatch(setLoadingProfile(true));
     });
+}
+export const getStatus = (userId) => (dispatch) => {
+    profileAPI.getStatus(userId).then(
+        data => {
+            dispatch(setStatus(data))
+        }
+    )
+}
+export const updateStatus = () => (dispatch) => {
+    profileAPI.updateStatus().then(data => {
+        if (data.resultCode === 0) {
+            dispatch(newStatus)
+        }
+    }
+    )
 }
 export default postReducer;
