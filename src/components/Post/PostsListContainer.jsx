@@ -7,8 +7,9 @@ import PostsList from './PostsList';
 class PostListContainer extends React.Component {
     componentDidMount() {
         this.props.setLoadingProfile(false);
-        let userId = this.props.match.params.userId || 1;
+        let userId = this.props.match.params.userId || 17485;
         this.props.getProfile(userId);
+        this.props.getStatus(userId);
     }
     render() {
         return <div><PostsList posts={this.props} /></div>

@@ -14,19 +14,20 @@ class ProfileStatus extends React.Component {
         this.setState({
             isEdit: true
         })
+        this.props.updateStatus(this.state.status);
     }
     changeStatus = (event) => {
         this.setState({
-            status: event.target.value
+            status: event.currentTarget.value
         })
     }
     render() {
         return (
             <div>
                 {this.state.isEdit &&
-                    <div onClick={this.activateInput}><span>There is status here</span></div>}
+                    <div onClick={this.activateInput}><span>{this.props.status}</span></div>}
                 {!this.state.isEdit &&
-                    <div><input onFocus={true} onBlur={this.deactivateInput} onChange={this.changeStatus} type="text" /></div>
+                    <div><input autoFocus={true} onBlur={this.deactivateInput} onChange={this.changeStatus} value={this.state.status} type="text" /></div>
                 }
             </div >
         );

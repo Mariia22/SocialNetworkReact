@@ -4,8 +4,7 @@ const ADD_POST = 'ADD-POST';
 const CHANGE_POST = 'CHANGE-POST';
 const SET_PROFILE = 'SET-PROFILE';
 const SET_ISLOADING = 'SET-ISLOADING';
-const GET_STATUS = 'GET_STATUS';
-const UPDATE_STATUS = 'UPDATE_STATUS';
+const SET_STATUS = 'SET_STATUS';
 
 let initialState = {
     postData: [
@@ -41,13 +40,9 @@ const postReducer = (state = initialState, action) => {
             return {
                 ...state, isLoadingProfile: action.isLoadingProfile
             }
-        case GET_STATUS:
+        case SET_STATUS:
             return {
-                ...state, status: action.getStatus
-            }
-        case UPDATE_STATUS:
-            return {
-                ...state, status: action.updateStatus
+                ...state, status: action.status
             }
         default: { return state; }
     }
@@ -55,8 +50,7 @@ const postReducer = (state = initialState, action) => {
 export const addPost = () => ({ type: ADD_POST })
 export const changePost = (text) => ({ type: CHANGE_POST, text: text })
 const setProfile = (profile) => ({ type: SET_PROFILE, profile })
-const setStatus = (status) => ({ type: GET_STATUS, status })
-const newStatus = (status) => ({ type: UPDATE_STATUS, status })
+const setStatus = (status) => ({ type: SET_STATUS, status })
 export const setLoadingProfile = (isLoadingProfile) => ({ type: SET_ISLOADING, isLoadingProfile })
 export const getProfile = (userId) => (dispatch) => {
     profileAPI.getProfile(userId).then(data => {
@@ -74,7 +68,7 @@ export const getStatus = (userId) => (dispatch) => {
 export const updateStatus = () => (dispatch) => {
     profileAPI.updateStatus().then(data => {
         if (data.resultCode === 0) {
-            dispatch(newStatus)
+            dispatch(setStatus(data))
         }
     }
     )
