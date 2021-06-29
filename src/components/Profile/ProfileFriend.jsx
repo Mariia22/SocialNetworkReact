@@ -3,7 +3,6 @@ import style from './Profile.module.css'
 import ProfileStatus from './ProfileStatus';
 
 const ProfileFriend = (props) => {
-    console.log(props);
     return (
         <div className={style.appProfile}>
             <div className={style.appProfileRed}></div>
