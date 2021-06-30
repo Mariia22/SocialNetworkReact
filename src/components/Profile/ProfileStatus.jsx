@@ -21,13 +21,20 @@ class ProfileStatus extends React.Component {
             status: event.target.value
         })
     }
+    componentDidUpdate(prevProps) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
+    }
     render() {
         return (
             <div>
                 {this.state.isEdit &&
                     <div onClick={this.activateInput}><span>{this.props.status || '======'}</span></div>}
                 {!this.state.isEdit &&
-                    <div><input autoFocus={true} onBlur={this.deactivateInput} onChange={this.changeStatus} value={this.state.status} type="text" /></div>
+                    <div><input autoFocus={true} onBlur={this.deactivateInput} onChange={this.changeStatus} value={this.state.status || ''} type="text" /></div>
                 }
             </div >
         );
