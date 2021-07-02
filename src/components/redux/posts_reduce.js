@@ -1,7 +1,6 @@
 import { profileAPI } from "../API/api";
 
 const ADD_POST = 'ADD-POST';
-const CHANGE_POST = 'CHANGE-POST';
 const SET_PROFILE = 'SET-PROFILE';
 const SET_ISLOADING = 'SET-ISLOADING';
 const SET_STATUS = 'SET_STATUS';
@@ -12,7 +11,6 @@ let initialState = {
         { id: 2, message: 'How are you?', like: 3 },
         { id: 3, message: 'I am OK', like: 7 },
     ],
-    newPostText: '',
     profile: [],
     isLoadingProfile: false,
     status: ''
@@ -22,15 +20,8 @@ const postReducer = (state = initialState, action) => {
         case ADD_POST: {
             return {
                 ...state,
-                postData: [...state.postData, { id: 4, message: state.newPostText, like: 0 }],
-                newPostText: ''
+                postData: [...state.postData, { id: 4, message: action.newPostText, like: 0 }]
             };
-        }
-        case CHANGE_POST: {
-            return {
-                ...state,
-                newPostText: action.text
-            }
         }
         case SET_PROFILE:
             return {
@@ -47,8 +38,7 @@ const postReducer = (state = initialState, action) => {
         default: { return state; }
     }
 }
-export const addPost = () => ({ type: ADD_POST })
-export const changePost = (text) => ({ type: CHANGE_POST, text: text })
+export const addPost = (newPostText) => ({ type: ADD_POST, newPostText })
 const setProfile = (profile) => ({ type: SET_PROFILE, profile })
 const setStatus = (status) => ({ type: SET_STATUS, status })
 export const setLoadingProfile = (isLoadingProfile) => ({ type: SET_ISLOADING, isLoadingProfile })
