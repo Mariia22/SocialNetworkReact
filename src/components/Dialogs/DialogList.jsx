@@ -9,7 +9,6 @@ const DialogList = (props) => {
     const dialogItem = props.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id} key={dialog.id} />);
 
     const addMessage = (value) => {
-        console.log(value);
         props.addMessage(value.newMessageText);
     }
     return (
