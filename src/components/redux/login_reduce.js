@@ -6,6 +6,7 @@ const GET_LOGIN = 'GET-LOGIN';
 let initialState = {
     login: null,
     email: null,
+    password: null,
     isSetLogin: false
 }
 const loginReducer = (state = initialState, action) => {
@@ -13,7 +14,7 @@ const loginReducer = (state = initialState, action) => {
         case GET_LOGIN: {
             return {
                 ...state,
-                ...action.data
+                ...action.payload
             }
         }
         case SET_LOGIN: {
@@ -25,7 +26,7 @@ const loginReducer = (state = initialState, action) => {
         default: { return state }
     }
 }
-const getLogin = (login, email) => ({ type: GET_LOGIN, data: { login, email } })
+const getLogin = (login, email) => ({ type: GET_LOGIN, payload: { login, email, password } })
 export const setLogin = (isSetLogin) => ({ type: SET_LOGIN, isSetLogin })
 export const getAuth = () => (dispatch) => {
     authAPI.getAuth().then(response => {
@@ -35,6 +36,21 @@ export const getAuth = () => (dispatch) => {
             dispatch(setLogin(true))
         }
 
+    })
+}
+export const login = (email, password, rememberMe = false) => (dispatch) => {
+    authAPI.login().then(response => {
+        if (response.resultCode === 0) {
+            dispatch(getLogin(email, password, rememberMe))
+        }
+    })
+}
+export const logout = () => (dispatch) => {
+    authAPI.logout().then(response => {
+        if (response.resultCode === 0) {
+            dispatch(getLogin(null, null, null))
+            dispatch(setLogin(false))
+        }
     })
 }
 export default loginReducer;
