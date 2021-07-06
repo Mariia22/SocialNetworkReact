@@ -24,7 +24,7 @@ const Nav = (props) => {
                 <NavLink to='/settings' activeClassName={style.activeLink}>Settings</NavLink>
             </li>
             <li>
-                {props.login.isSetLogin ? <NavLink to='/login' activeClassName={style.activeLink}>{props.login.login}</NavLink>
+                {props.login.isSetLogin ? <NavLink to='/login' activeClassName={style.activeLink}>{props.login.login}<button>LogOut</button></NavLink>
                     : <NavLink to='/login' activeClassName={style.activeLink}>Login</NavLink>}
             </li>
         </ul >

@@ -20,25 +20,23 @@ export const userAPI = {
 }
 export const authAPI = {
     getAuth() {
-        return instance.get(`auth/me`).then(response => { return response.data })
+        return instance.get(`auth/me`)
     },
-    login() {
-        return instance.post('auth/login').then(response => { return response.data })
+    login(email, password, rememberMe = false) {
+        return instance.post('auth/login', { email, password, rememberMe })
     },
     logout() {
-        return instance.delete('auth/login').then(response => { return response.data })
+        return instance.delete('auth/login')
     }
-
-
 }
 export const profileAPI = {
     getProfile(id) {
-        return instance.get(`profile/${id}`).then(response => { return response.data })
+        return instance.get(`profile/${id}`)
     },
     getStatus(id) {
-        return instance.get(`profile/status/${id}`).then(response => { return response.data })
+        return instance.get(`profile/status/${id}`)
     },
     updateStatus(status) {
-        return instance.put(`profile/status/`, { status }).then(response => { return response.data })
+        return instance.put(`profile/status/`, { status })
     }
 }

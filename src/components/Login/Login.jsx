@@ -1,9 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import LoginForm from '../Forms/LoginForm';
+import { Redirect } from 'react-router';
+import { login } from '../redux/login_reduce';
 
-const Login = () => {
+const Login = (props) => {
     const onSubmit = (formData) => {
-        console.log(formData)
+        debugger;
+        props.login(formData.email, formData.password, formData.rememberMe);
+    }
+    if (props.isSetLogin) {
+        <Redirect to='./profile' />
     }
     return (
         <div>
@@ -13,4 +20,9 @@ const Login = () => {
     )
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+    return {
+        isSetLogin: state.login.isSetLogin
+    }
+}
+export default connect(mapStateToProps, { login })(Login);
