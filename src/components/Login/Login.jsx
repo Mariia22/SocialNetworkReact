@@ -6,11 +6,10 @@ import { login } from '../redux/login_reduce';
 
 const Login = (props) => {
     const onSubmit = (formData) => {
-        debugger;
         props.login(formData.email, formData.password, formData.rememberMe);
     }
     if (props.isSetLogin) {
-        <Redirect to='./profile' />
+        <Redirect to={'./profile'} />
     }
     return (
         <div>
@@ -19,7 +18,6 @@ const Login = (props) => {
         </div>
     )
 }
-
 const mapStateToProps = (state) => {
     return {
         isSetLogin: state.login.isSetLogin

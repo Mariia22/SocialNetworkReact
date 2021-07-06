@@ -22,22 +22,22 @@ const loginReducer = (state = initialState, action) => {
 export const setLogin = (userId, login, email, isSetLogin) => ({ type: SET_LOGIN, payload: { userId, login, email, isSetLogin } })
 export const getAuth = () => (dispatch) => {
     authAPI.getAuth().then(response => {
-        if (response.resultCode === 0) {
-            let { id, login, email } = response.data;
+        if (response.data.resultCode === 0) {
+            let { id, login, email } = response.data.data;
             dispatch(setLogin(id, login, email, true))
         }
     })
 }
 export const login = (email, password, rememberMe) => (dispatch) => {
     authAPI.login(email, password, rememberMe).then(response => {
-        if (response.resultCode === 0) {
+        if (response.data.resultCode === 0) {
             dispatch(getAuth())
         }
     })
 }
 export const logout = () => (dispatch) => {
     authAPI.logout().then(response => {
-        if (response.resultCode === 0) {
+        if (response.data.resultCode === 0) {
             dispatch(setLogin(null, null, null, false))
         }
     })
