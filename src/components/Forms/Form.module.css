@@ -8,3 +8,9 @@
 .error textarea{
     border: 2px solid red;
 }
+
+.error div{
+    border: 2px solid red;
+    color:red;
+
+}

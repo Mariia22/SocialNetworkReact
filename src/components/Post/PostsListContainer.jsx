@@ -7,7 +7,7 @@ import PostsList from './PostsList';
 class PostListContainer extends React.Component {
     componentDidMount() {
         this.props.setLoadingProfile(false);
-        let userId = this.props.match.params.userId || 17485;
+        let userId = this.props.match.params.userId || this.props.userAuthId;
         this.props.getProfile(userId);
         this.props.getStatus(userId);
     }
@@ -20,7 +20,8 @@ const mapStateToProps = (state) => {
         posts: state.posts.postData,
         profile: state.posts.profile,
         isLoadingProfile: state.posts.isLoadingProfile,
-        status: state.posts.status
+        status: state.posts.status,
+        userAuthId: state.login.userId
     }
 }
 let urlProfile = withRouter(PostListContainer);
