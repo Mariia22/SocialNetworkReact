@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom'
+import { withRouter } from 'react-router';
 import HeaderContainer from './components/Header/HeaderContainer';
 import PostListContainer from './components/Post/PostsListContainer';
 import FriendContainer from './components/Friend/FriendContainer';
@@ -9,24 +10,40 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import Login from './components/Login/Login';
 import './App.css';
+import { getAuth } from './components/redux/login_reduce';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 
-const App = (props) => {
-  return (
-    <BrowserRouter>
-      <div className="app_wrapper">
-        <HeaderContainer store={props.store} />
-        <div className="app_wrapper_content">
-          <Route path='/profile/:userId?' render={() => <PostListContainer store={props.store} />} />
-          <Route path='/users' render={() => <FriendContainer store={props.store} />} />
-          <Route path='/dialog' render={() => <DialogListContainer store={props.store} />} />
-          <Route path='/news' component={News} />
-          <Route path='/music' component={Music} />
-          <Route path='/settings' component={Settings} />
-          <Route path='/login' component={Login} />
+
+class App extends Component {
+  componentDidMount() {
+    this.props.getAuth();
+  }
+  render() {
+    return (
+      <BrowserRouter>
+        <div className="app_wrapper">
+          <HeaderContainer store={this.props.store} />
+          <div className="app_wrapper_content">
+            <Route path='/profile/:userId?' render={() => <PostListContainer store={this.props.store} />} />
+            <Route path='/users' render={() => <FriendContainer store={this.props.store} />} />
+            <Route path='/dialog' render={() => <DialogListContainer store={this.props.store} />} />
+            <Route path='/news' component={News} />
+            <Route path='/music' component={Music} />
+            <Route path='/settings' component={Settings} />
+            <Route path='/login' component={Login} />
+          </div>
         </div>
-      </div>
-    </BrowserRouter>
-  );
+      </BrowserRouter >
+    );
+  }
 }
-
-export default App;
+/*const mapStateToProps = (state) => {
+  return {
+    login: state.login.login,
+    password: state.login.password,
+    email: state.login.email,
+    isSetLogin: state.login.isSetLogin,
+  }
+}*/
+export default compose(withRouter, connect(null, { getAuth }))(App);
