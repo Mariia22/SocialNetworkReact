@@ -23,7 +23,7 @@ const FriendList = (props) => {
         <div className={style.friendList} >
             {
                 props.users.map(user =>
-                    <div className={style.friendItem}>
+                    <div className={style.friendItem} key={user.id}>
                         <NavLink to={'/profile/' + user.id}>
                             <img src={user.photos.small ? user.photos.small : userLogo} alt="friend" />
                         </NavLink>

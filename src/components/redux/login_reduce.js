@@ -22,7 +22,7 @@ const loginReducer = (state = initialState, action) => {
 }
 export const setLogin = (userId, login, email, isSetLogin) => ({ type: SET_LOGIN, payload: { userId, login, email, isSetLogin } })
 export const getAuth = () => (dispatch) => {
-    authAPI.getAuth().then(response => {
+    return authAPI.getAuth().then(response => {
         if (response.data.resultCode === 0) {
             let { id, login, email } = response.data.data;
             dispatch(setLogin(id, login, email, true))

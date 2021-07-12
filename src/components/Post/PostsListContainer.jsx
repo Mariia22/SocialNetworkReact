@@ -8,8 +8,13 @@ class PostListContainer extends React.Component {
     componentDidMount() {
         this.props.setLoadingProfile(false);
         let userId = this.props.match.params.userId || this.props.userAuthId;
-        this.props.getProfile(userId);
-        this.props.getStatus(userId);
+        if (!userId) {
+            this.props.history.push('/login');
+        }
+        else {
+            this.props.getProfile(userId);
+            this.props.getStatus(userId);
+        }
     }
     render() {
         return <div><PostsList posts={this.props} /></div>

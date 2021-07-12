@@ -10,6 +10,7 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import Login from './components/Login/Login';
 import './App.css';
+import Preload from './components/Common/Preload';
 import { getAuth } from './components/redux/login_reduce';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -20,6 +21,9 @@ class App extends Component {
     this.props.getAuth();
   }
   render() {
+    if (!this.props.initialized) {
+      <Preload />
+    }
     return (
       <BrowserRouter>
         <div className="app_wrapper">
@@ -38,12 +42,9 @@ class App extends Component {
     );
   }
 }
-/*const mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
-    login: state.login.login,
-    password: state.login.password,
-    email: state.login.email,
-    isSetLogin: state.login.isSetLogin,
+    initialized: state.app.initialized
   }
-}*/
-export default compose(withRouter, connect(null, { getAuth }))(App);
+}
+export default compose(withRouter, connect(mapStateToProps, { getAuth }))(App);
