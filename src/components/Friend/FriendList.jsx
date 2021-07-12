@@ -1,7 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import style from './Friend.module.css';
-import userLogo from './../../images/user.png';
+import Friend from './Friend';
 
 const FriendList = (props) => {
     let count = Math.ceil(props.totalCount / props.pageSize);
@@ -22,15 +21,8 @@ const FriendList = (props) => {
         </div>
         <div className={style.friendList} >
             {
-                props.users.map(user =>
-                    <div className={style.friendItem} key={user.id}>
-                        <NavLink to={'/profile/' + user.id}>
-                            <img src={user.photos.small ? user.photos.small : userLogo} alt="friend" />
-                        </NavLink>
-                        <span>{user.name}</span>
-                        <button disabled={props.isFetching.some(id => id === user.id)} onClick={() => changeToggle(user.id, user.followed)}>{user.followed ? 'Follow' : 'Unfollow'}</button>
-                    </div>
-                )
+                props.users.map(user => <Friend key={user.id} id={user.id} photo={user.photos.small} name={user.name}
+                    followed={user.followed} isFetching={props.isFetching} changeToggle={changeToggle} />)
             }
         </div>
     </div>
