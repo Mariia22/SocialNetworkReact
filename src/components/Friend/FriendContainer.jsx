@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { setCurrentPage, setIsFetching, getUsers, setIsLoading, followUser, unfollowUser } from '../redux/friends_reduce';
 import FriendList from './FriendList';
 import Preload from '../Common/Preload';
+import { getUsersSelector, totalCountSelector, pageSizeSelector, currentPageSelector, isLoadingSelector, isFetchingSelector } from '../redux/users_selector';
 
 class FriendContainer extends React.Component {
     componentDidMount() {
@@ -33,12 +34,12 @@ class FriendContainer extends React.Component {
 }
 const mapStateToProps = (state) => {
     return {
-        users: state.users.users,
-        totalCount: state.users.totalCount,
-        pageSize: state.users.pageSize,
-        currentPage: state.users.currentPage,
-        isLoading: state.users.isLoading,
-        isFetching: state.users.isFetching
+        users: getUsersSelector(state),
+        totalCount: totalCountSelector(state),
+        pageSize: pageSizeSelector(state),
+        currentPage: currentPageSelector(state),
+        isLoading: isLoadingSelector(state),
+        isFetching: isFetchingSelector(state)
     }
 }
 export default connect(mapStateToProps, { setCurrentPage, setIsLoading, setIsFetching, getUsers, followUser, unfollowUser })(FriendContainer);
