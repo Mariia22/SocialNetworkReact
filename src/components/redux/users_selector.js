@@ -3,7 +3,10 @@ import { createSelector } from "reselect";
 const getUsers = (state) => {
     return state.users.users
 }
-export const getUsersSelector = createSelector((users, getUsers) => { return users.filter(user => user) })
+export const getUsersSelector = createSelector(getUsers,
+    (users) => {
+        return users.filter(user => true);
+    })
 
 export const totalCountSelector = (state) => {
     return state.users.totalCount

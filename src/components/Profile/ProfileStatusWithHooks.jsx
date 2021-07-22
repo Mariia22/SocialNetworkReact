@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
 
 const ProfileStatusWithHooks = (props) => {
-    let [isEdit, setEdit] = useState(false);
+    let [isEdit, setEdit] = useState(true);
     let [status, setStatus] = useState(props.status);
 
     useEffect(() => {
-        setStatus(props.status)
+        setStatus(props.status);
     }, [props.status]);
 
     const activateInput = () => {
         setEdit(false)
     }
     const deactivateInput = () => {
-        setEdit(true)
+        setEdit(true);
+        props.updateStatus(status);
     }
     const changeStatus = (e) => {
         setStatus(e.target.value)
-        props.updateStatus(status);
     }
     return (
         <div>
