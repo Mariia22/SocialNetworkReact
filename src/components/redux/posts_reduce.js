@@ -4,6 +4,7 @@ const ADD_POST = 'ADD-POST';
 const SET_PROFILE = 'SET-PROFILE';
 const SET_ISLOADING = 'SET-ISLOADING';
 const SET_STATUS = 'SET_STATUS';
+const DELETE_POST = 'DELETE-POST';
 
 let initialState = {
     postData: [
@@ -35,10 +36,15 @@ const postReducer = (state = initialState, action) => {
             return {
                 ...state, status: action.status
             }
+        case DELETE_POST:
+            return {
+                ...state, postData: [...state.postData.filter(postData => postData.id !== action.postId)]
+            }
         default: { return state; }
     }
 }
 export const addPost = (newPostText) => ({ type: ADD_POST, newPostText })
+export const deletePost = (postId) => ({ type: DELETE_POST, postId })
 const setProfile = (profile) => ({ type: SET_PROFILE, profile })
 const setStatus = (status) => ({ type: SET_STATUS, status })
 export const setLoadingProfile = (isLoadingProfile) => ({ type: SET_ISLOADING, isLoadingProfile })
