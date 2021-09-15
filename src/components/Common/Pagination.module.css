@@ -1,0 +1,17 @@
+.paginationList{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 0.6rem;
+    cursor: pointer;
+    margin: 10px;
+    }
+    .paginationList span{
+      margin: 0.1rem;
+    }
+    .selected{
+      color: rgb(239, 76, 69);
+      font-weight: bold;
+    }
+    
