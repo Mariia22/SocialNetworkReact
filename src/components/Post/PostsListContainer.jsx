@@ -5,16 +5,23 @@ import { addPost, getProfile, setLoadingProfile, getStatus, updateStatus } from 
 import PostsList from './PostsList';
 
 class PostListContainer extends React.Component {
-    componentDidMount() {
+    refreshProfile() {
         this.props.setLoadingProfile(false);
         let userId = this.props.match.params.userId || this.props.userAuthId;
         if (!userId) {
             this.props.history.push('/login');
         }
-        else {
-            this.props.getProfile(userId);
-            this.props.getStatus(userId);
+        this.props.getProfile(userId);
+        this.props.getStatus(userId);
+    }
+    componentDidMount() {
+        this.refreshProfile();
+    }
+    componentDidUpdate(prevProps) {
+        if (this.props.match.params.userId !== prevProps.match.params.userId) {
+            this.refreshProfile();
         }
+
     }
     render() {
         return <div><PostsList posts={this.props} /></div>
