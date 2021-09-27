@@ -49,33 +49,29 @@ export const deletePost = (postId) => ({ type: DELETE_POST, postId })
 const setProfile = (profile) => ({ type: SET_PROFILE, profile })
 const setStatus = (status) => ({ type: SET_STATUS, status })
 export const setLoadingProfile = (isLoadingProfile) => ({ type: SET_ISLOADING, isLoadingProfile })
-export const getProfile = (userId) => (dispatch) => {
-    profileAPI.getProfile(userId).then(data => {
-        dispatch(setProfile(data));
+export const getProfile = (userId) => async (dispatch) => {
+    let response = await profileAPI.getProfile(userId);
+    if (response.resultCode === 0) {
+        dispatch(setProfile(response.data));
         dispatch(setLoadingProfile(true));
-    });
-}
-export const getStatus = (userId) => (dispatch) => {
-    profileAPI.getStatus(userId).then(
-        data => {
-            dispatch(setStatus(data))
-        }
-    )
-}
-export const updateStatus = (status) => (dispatch) => {
-    profileAPI.updateStatus(status).then(data => {
-        if (data.resultCode === 0) {
-            dispatch(setStatus(status))
-        }
     }
-    )
+}
+export const getStatus = (userId) => async (dispatch) => {
+    let response = await profileAPI.getStatus(userId)
+    if (response.resultCode === 0) {
+        dispatch(setStatus(response.data))
+    }
+}
+export const updateStatus = (status) => async (dispatch) => {
+    let response = await profileAPI.updateStatus(status);
+    if (response.resultCode === 0) {
+        dispatch(setStatus(status))
+    }
 }
 export const savePhoto = (file) => (dispatch) => {
-    profileAPI.updateStatus(file).then(data => {
-        if (data.resultCode === 0) {
-            dispatch(setStatus(file))
-        }
+    let response = await profileAPI.savePhoto(file);
+    if (response.resultCode === 0) {
+        dispatch(savePhoto(file))
     }
-    )
 }
 export default postReducer;
