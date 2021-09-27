@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import style from './Pagination.module.css';
 const Pagination = ({ totalCount, pageSize, currentPage, changeCurrentPage, portionSize = 10 }) => {
-    let count = Math.ceil(totalCount / pageSize);
+    let countUsers = Math.ceil(totalCount / pageSize);
     const pagination = [];
-    for (let i = 1; i <= count; i++) {
+    for (let i = 1; i <= countUsers; i++) {
         pagination.push(i)
     }
-    let portionCount = Math.ceil(totalCount / portionSize);
+    let portionCount = Math.ceil(countUsers / portionSize);
     let [portionNumber, setPortionNumber] = useState(1);
     let leftBorderPortion = (portionNumber - 1) * portionSize + 1;
     let rightBorderPortion = portionNumber * portionSize;
+    console.log(portionNumber);
+    console.log(portionCount);
     return <div className={style.paginationList}>
         {
             portionNumber > 1 &&

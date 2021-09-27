@@ -12,6 +12,9 @@ class FriendContainer extends React.Component {
             this.props.getUsers(this.props.currentPage, this.props.pageSize)
         }
     }
+    componentDidUpdate() {
+        this.props.setIsLoading(false);
+    }
     changeCurrentPage = (currentPage) => {
         this.props.setIsLoading(true);
         this.props.setCurrentPage(currentPage);
