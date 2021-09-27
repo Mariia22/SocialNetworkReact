@@ -13,7 +13,9 @@ const PostList = (props) => {
     }
     return (
         <div className={style.appPostList}>
-            {props.posts.isLoadingProfile ? <ProfileFriend profile={props.posts.profile} status={props.posts.status} updateStatus={props.posts.updateStatus} />
+            {props.posts.isLoadingProfile ?
+                <ProfileFriend
+                    profile={props.posts.profile} status={props.posts.status} updateStatus={props.posts.updateStatus} isOwner={props.isOwner} savePhoto={props.savePhoto} />
                 : <Preload />}
             <div className={style.appPostForm}>
                 <AddNewPost onSubmit={addPost} />

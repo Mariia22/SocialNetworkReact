@@ -4,6 +4,11 @@ import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 import userPhoto from './../../images/user.png';
 
 const ProfileFriend = (props) => {
+    const onMainPhotoSelected = (e) => {
+        if (e.target.files.length > 0) {
+            props.savePhoto(e.target.files[0]);
+        }
+    }
     return (
         <div className={style.appProfile}>
             <div className={style.appProfileRed}></div>
@@ -13,6 +18,7 @@ const ProfileFriend = (props) => {
                 <p>{props.profile.aboutMe}</p>
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
             </div>
+            {props.isOwner ? <input type='file' onChange={onMainPhotoSelected} /> : null}
         </div>
     );
 }

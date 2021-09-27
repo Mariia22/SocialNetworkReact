@@ -14,7 +14,8 @@ let initialState = {
     ],
     profile: [],
     isLoadingProfile: false,
-    status: ''
+    status: '',
+    isOwner: false
 }
 const postReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -65,6 +66,14 @@ export const updateStatus = (status) => (dispatch) => {
     profileAPI.updateStatus(status).then(data => {
         if (data.resultCode === 0) {
             dispatch(setStatus(status))
+        }
+    }
+    )
+}
+export const savePhoto = (file) => (dispatch) => {
+    profileAPI.updateStatus(file).then(data => {
+        if (data.resultCode === 0) {
+            dispatch(setStatus(file))
         }
     }
     )
