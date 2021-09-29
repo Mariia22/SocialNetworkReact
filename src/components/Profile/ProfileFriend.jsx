@@ -22,9 +22,11 @@ const ProfileFriend = (props) => {
                 width="100px"
                 height="100px" />
             <div className={style.appProfileWhite}>
-                <h3>{props.profile.fullName}</h3>
-                <p>{props.profile.aboutMe}</p>
-                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
+                <b>Full name:</b>{props.profile.fullName}
+                <b>Looking for a job:</b>{props.profile.lookingForAJob ? 'yes' : 'no'}
+                <b>My professional skills:</b>{props.profile.lookingForAJobDescription ? 'yes' : 'no'}
+                <b>About me:</b>{props.profile.aboutMe}
+                <b>Status:</b><ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
             </div>
         </div>
     );

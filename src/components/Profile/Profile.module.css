@@ -18,7 +18,7 @@ h3{
     flex-direction: column;
     align-items: center;
     position: relative;
-    margin-left: 30%;
+    margin-left: 10%;
     margin-right: 10%;
   }
   
@@ -29,12 +29,11 @@ h3{
   }
   
   .appProfileWhite{
-    width: 100%;
+    width: 98%;
     background: white;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding-bottom: 50px;
+    padding: 25px 10px 15px 10px;
   }
   
   .appProfilePhoto{
