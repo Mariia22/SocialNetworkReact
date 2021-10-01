@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import style from './Profile.module.css'
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
+import ProfileContacts from './ProfileContacts';
 import userPhoto from './../../images/user.png';
 
 const ProfileFriend = (props) => {
@@ -26,6 +27,10 @@ const ProfileFriend = (props) => {
                 <b>Looking for a job:</b>{props.profile.lookingForAJob ? 'yes' : 'no'}
                 <b>My professional skills:</b>{props.profile.lookingForAJobDescription ? 'yes' : 'no'}
                 <b>About me:</b>{props.profile.aboutMe}
+                <b>Contacts:</b> {Object.keys(props.profile.contacts).map(key => {
+                    return < ProfileContacts key={key} contactTitle={key} contactValue={props.profile.contacts[key]} />
+                })}
+
                 <b>Status:</b><ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
             </div>
         </div>
