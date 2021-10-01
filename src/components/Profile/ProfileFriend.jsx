@@ -17,6 +17,9 @@ const ProfileFriend = (props) => {
             props.savePhoto(e.target.files[0]);
         }
     }
+    const onSubmit = (formData) => {
+        console.log(formData);
+    }
     return (
         <div className={style.appProfile}>
             <div className={style.appProfileRed}
@@ -29,7 +32,7 @@ const ProfileFriend = (props) => {
                 width="100px"
                 height="100px" />
             <div className={style.appProfileWhite}>
-                {edit ? <ProfileDataForm profile={props.profile} /> : <ProfileData
+                {edit ? <ProfileDataForm profile={props.profile} onSubmit={onSubmit} /> : <ProfileData
                     profile={props.profile}
                     isOwner={props.isOwner}
                     goToEditMode={() => { setEdit(true) }} />}

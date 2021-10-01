@@ -2,7 +2,6 @@ import React from 'react'
 import ProfileContacts from './ProfileContacts';
 
 const ProfileData = (props) => {
-    console.log(props);
     return (
         <>
             {props.isOwner && <button onClick={props.goToEditMode}>Edit</button>}
