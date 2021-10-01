@@ -15,7 +15,13 @@ const PostList = (props) => {
         <div className={style.appPostList}>
             {props.posts.isLoadingProfile ?
                 <ProfileFriend
-                    profile={props.posts.profile} status={props.posts.status} updateStatus={props.posts.updateStatus} isOwner={props.isOwner} savePhoto={props.savePhoto} />
+                    profile={props.posts.profile}
+                    status={props.posts.status}
+                    updateStatus={props.posts.updateStatus}
+                    isOwner={props.isOwner}
+                    savePhoto={props.savePhoto}
+                    saveProfile={props.saveProfile}
+                />
                 : <Preload />}
             <div className={style.appPostForm}>
                 <AddNewPost onSubmit={addPost} />

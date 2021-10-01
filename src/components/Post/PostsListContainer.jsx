@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { addPost, getProfile, setLoadingProfile, getStatus, updateStatus, savePhoto } from '../redux/posts_reduce.js';
+import { addPost, getProfile, setLoadingProfile, getStatus, updateStatus, savePhoto, saveProfile } from '../redux/posts_reduce.js';
 import PostsList from './PostsList';
 
 class PostListContainer extends React.Component {
@@ -24,7 +24,11 @@ class PostListContainer extends React.Component {
 
     }
     render() {
-        return <div><PostsList posts={this.props} isOwner={!this.props.match.params.userId} savePhoto={this.props.savePhoto} /></div>
+        return <div><PostsList posts={this.props}
+            isOwner={!this.props.match.params.userId}
+            savePhoto={this.props.savePhoto}
+            saveProfile={this.props.saveProfile}
+        /></div>
     }
 }
 const mapStateToProps = (state) => {
@@ -37,4 +41,4 @@ const mapStateToProps = (state) => {
     }
 }
 let urlProfile = withRouter(PostListContainer);
-export default connect(mapStateToProps, { addPost, getProfile, setLoadingProfile, getStatus, updateStatus, savePhoto })(urlProfile);
+export default connect(mapStateToProps, { addPost, getProfile, setLoadingProfile, getStatus, updateStatus, savePhoto, saveProfile })(urlProfile);
