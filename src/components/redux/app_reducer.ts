@@ -2,26 +2,34 @@ import { getAuth } from "./login_reduce";
 
 const SET_INITIALIZED = 'SET_INITIALIZED';
 
-let initialState = {
+type initialStateType = {
+  initialized: boolean
+}
+
+let initialState: initialStateType = {
   initialized: false
 }
-const appReducer = (state = initialState, action) => {
+const appReducer = (state = initialState, action: any): initialStateType => {
   switch (action.type) {
     case SET_INITIALIZED: {
       return {
         ...state,
-        initialized
+        initialized: true
       }
     }
     default: { return state }
   }
 }
+type initializedSuccseedAction = {
+  type: typeof SET_INITIALIZED
+}
+const initializedSuccseed = (): initializedSuccseedAction => ({ type: SET_INITIALIZED });
 
-const initializedSuccseed = (initialized) => ({ type: SET_INITIALIZED, initialized });
-export const initialized = () => (dispatch) => {
+export const initialized = () => (dispatch: any) => {
   let promise = dispatch(getAuth);
-  promise.then(() => {
-    dispatch(initializedSuccseed(true))
-  })
+  Promise.all([promise])
+    .then(() => {
+      dispatch(initializedSuccseed())
+    })
 }
 export default appReducer;
