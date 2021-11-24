@@ -17,7 +17,7 @@ let initialState = {
   isFetching: [] as Array<boolean>
 }
 type initialStateType = typeof initialState;
-const friendReducer = (state = initialState, action: any): initialStateType => {
+const friendReducer = (state = initialState, action: ActionsTypes): initialStateType => {
   switch (action.type) {
     case TOGGLE_FOLLOWING:
       return {
@@ -90,6 +90,9 @@ type SetIsFetchingActionType = {
   userId: number
 }
 export const setIsFetching = (isFetching: boolean, userId: number): SetIsFetchingActionType => ({ type: IS_FETCHING, isFetching, userId })
+
+type ActionsTypes = ToggleFollowingActionType | SetFriendsActionType | SetTotalCountActionType |
+  SetCurrentPageActionType | SetIsLoadingActionType | SetIsFetchingActionType
 
 export const getUsers = (currentPage = 1, pageSize = 99) => async (dispatch: any) => {
   const data = await userAPI.getUser(currentPage, pageSize)
