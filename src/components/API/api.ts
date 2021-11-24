@@ -1,45 +1,64 @@
-import * as axios from 'axios';
+import axios, { AxiosInstance } from 'axios'
+import { ProfileType } from './../../types/types'
 
 const instance = axios.create({
   baseURL: 'https://social-network.samuraijs.com/api/1.0/',
   withCredentials: true,
   headers: { 'API-KEY': '60dd0327-9af6-4c5a-bb28-85f63102a11f' }
-
 });
 
 export const userAPI = {
   getUser(currentPage = 1, pageSize = 150) {
     return instance.get(`users?page=${currentPage}&count=${pageSize}`).then(response => { return response.data })
   },
-  follow(id) {
+  follow(id: number) {
     return instance.post(`follow/${id}`).then(response => { return response.data })
   },
-  unfollow(id) {
+  unfollow(id: number) {
     return instance.delete(`follow/${id}`).then(response => { return response.data })
   }
 }
+
+type GetAuthType = {
+  data: { id: number, email: string, login: string }
+  resultCode: ResultCodeEnum
+  messages: Array<string>
+}
+type LoginType = {
+  data: { userId: number }
+  resultCode: ResultCodeEnum | ResultCodeCaptchaEnum
+  messages: Array<string>
+}
+export enum ResultCodeEnum {
+  Success = 0,
+  Error = 1
+}
+export enum ResultCodeCaptchaEnum {
+  CaptchaIsRequired = 10
+}
 export const authAPI = {
   getAuth() {
-    return instance.get(`auth/me`)
+    return instance.get<GetAuthType>(`auth/me`).then(res => res.data)
   },
-  login(email, password, rememberMe = false, captcha) {
-    return instance.post('auth/login', { email, password, rememberMe, captcha })
+  login(email: string, password: string, rememberMe = false, captcha: null | string) {
+    return instance.post<LoginType>('auth/login', { email, password, rememberMe, captcha }).then(res => res.data)
   },
   logout() {
     return instance.delete('auth/login')
   }
 }
+
 export const profileAPI = {
-  getProfile(id) {
+  getProfile(id: number) {
     return instance.get(`profile/${id}`);
   },
-  getStatus(id) {
+  getStatus(id: number) {
     return instance.get(`profile/status/${id}`);
   },
-  updateStatus(status) {
+  updateStatus(status: string) {
     return instance.put(`profile/status`, { status: status })
   },
-  savePhoto(photoFile) {
+  savePhoto(photoFile: any) {
     const formData = new FormData();
     formData.append('image', photoFile);
     return instance.put(`profile/photo`, formData, {
@@ -48,7 +67,7 @@ export const profileAPI = {
       }
     });
   },
-  saveProfile(profile) {
+  saveProfile(profile: ProfileType) {
     return instance.put(`profile`, profile);
   }
 }

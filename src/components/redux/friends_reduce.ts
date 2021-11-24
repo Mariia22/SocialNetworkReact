@@ -1,5 +1,7 @@
 import { UserType } from './../../types/types';
 import { userAPI } from "../API/api";
+import { ThunkAction } from 'redux-thunk';
+import { AppStateType } from './reduxStore';
 
 const TOGGLE_FOLLOWING = 'TOGGLE-FOLLOWING';
 const SET_FRIENDS = 'SET-FRIENDS';
@@ -14,9 +16,10 @@ let initialState = {
   pageSize: 100,
   currentPage: 1,
   isLoading: false,
-  isFetching: [] as Array<boolean>
+  isFetching: [] as Array<number> //array of users id
 }
 type initialStateType = typeof initialState;
+
 const friendReducer = (state = initialState, action: ActionsTypes): initialStateType => {
   switch (action.type) {
     case TOGGLE_FOLLOWING:
@@ -31,9 +34,7 @@ const friendReducer = (state = initialState, action: ActionsTypes): initialState
           })
       }
     case SET_FRIENDS:
-      return {
-        ...state, users: [...action.users]
-      }
+      return { ...state, users: action.users }
     case SET_TOTAL_COUNT:
       return {
         ...state, totalCount: action.totalCount
@@ -62,9 +63,9 @@ export const toggleFollowing = (userId: number): ToggleFollowingActionType => ({
 
 type SetFriendsActionType = {
   type: typeof SET_FRIENDS
-  users: UserType
+  users: Array<UserType>
 }
-const setFriends = (users: UserType): SetFriendsActionType => ({ type: SET_FRIENDS, users })
+const setFriends = (users: Array<UserType>): SetFriendsActionType => ({ type: SET_FRIENDS, users })
 
 type SetTotalCountActionType = {
   type: typeof SET_TOTAL_COUNT
@@ -94,24 +95,31 @@ export const setIsFetching = (isFetching: boolean, userId: number): SetIsFetchin
 type ActionsTypes = ToggleFollowingActionType | SetFriendsActionType | SetTotalCountActionType |
   SetCurrentPageActionType | SetIsLoadingActionType | SetIsFetchingActionType
 
-export const getUsers = (currentPage = 1, pageSize = 99) => async (dispatch: any) => {
-  const data = await userAPI.getUser(currentPage, pageSize)
-  dispatch(setFriends(data.items));
-  dispatch(setTotalCount(data.totalCount));
-  dispatch(setIsLoading(false));
-}
-export const followUser = (userId: number) => async (dispatch: any) => {
-  const data = await userAPI.follow(userId)
-  if (data.resultCode === 0) {
-    dispatch(toggleFollowing(userId));
-    dispatch(setIsFetching(false, userId));
+type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
+export const getUsers = (currentPage = 1, pageSize = 99): ThunkType => {
+  return async (dispatch) => {
+    const data = await userAPI.getUser(currentPage, pageSize)
+    dispatch(setFriends(data.items));
+    dispatch(setTotalCount(data.totalCount));
+    dispatch(setIsLoading(false));
   }
 }
-export const unfollowUser = (userId: number) => async (dispatch: any) => {
-  const data = await userAPI.unfollow(userId)
-  if (data.resultCode === 0) {
-    dispatch(toggleFollowing(userId));
-    dispatch(setIsFetching(false, userId));
+export const followUser = (userId: number): ThunkType => {
+  return async (dispatch) => {
+    const data = await userAPI.follow(userId)
+    if (data.resultCode === 0) {
+      dispatch(toggleFollowing(userId));
+      dispatch(setIsFetching(false, userId));
+    }
+  }
+}
+export const unfollowUser = (userId: number): ThunkType => {
+  return async (dispatch) => {
+    const data = await userAPI.unfollow(userId)
+    if (data.resultCode === 0) {
+      dispatch(toggleFollowing(userId));
+      dispatch(setIsFetching(false, userId));
+    }
   }
 }
 
