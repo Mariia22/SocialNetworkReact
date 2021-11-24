@@ -14,7 +14,7 @@ let initialState = {
   pageSize: 100,
   currentPage: 1,
   isLoading: false,
-  isFetching: [] as Array<number>
+  isFetching: [] as Array<boolean>
 }
 type initialStateType = typeof initialState;
 const friendReducer = (state = initialState, action: any): initialStateType => {
